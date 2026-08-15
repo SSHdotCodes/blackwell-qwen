@@ -37,6 +37,9 @@ class Candidate:
     draft_model_path: str | None = None
     speculative_num_steps: int = 3
     speculative_num_draft_tokens: int = 4
+    speculative_attention_mode: str | None = None
+    page_size: int = 1
+    enable_spec_v2: bool = False
     cuda_graph_max_bs: int = 32
     mamba_ratio: float = 1.8
     max_running_requests: int = 32
@@ -62,6 +65,12 @@ class Candidate:
             "--max-running-requests",
             str(self.max_running_requests),
         ]
+        if self.page_size != 1:
+            flags.extend(["--page-size", str(self.page_size)])
+        if self.speculative_attention_mode:
+            flags.extend(
+                ["--speculative-attention-mode", self.speculative_attention_mode]
+            )
         if self.speculative_algorithm == "EAGLE":
             flags.extend(
                 [
@@ -126,6 +135,22 @@ MTP_DEPTH_CANDIDATES = [
     )
     for steps in range(2, 8)
 ]
+MTP_ADVANCED_CANDIDATES = [
+    Candidate(
+        f"flashinfer_cutlass_mtp_s{steps}_decode_p{page_size}",
+        "flashinfer",
+        "cutlass",
+        1024,
+        "EAGLE",
+        speculative_num_steps=steps,
+        speculative_num_draft_tokens=steps + 1,
+        speculative_attention_mode="decode",
+        page_size=page_size,
+        enable_spec_v2=True,
+    )
+    for page_size in (1, 64)
+    for steps in (2, 3)
+]
 
 
 def select_candidates(candidate_set: str, draft_model_path: str | None) -> list[Candidate]:
@@ -135,6 +160,8 @@ def select_candidates(candidate_set: str, draft_model_path: str | None) -> list[
         chosen = [BASELINE, *MTP_DEPTH_CANDIDATES]
     elif candidate_set == "finalists":
         chosen = [BASELINE, *MTP_DEPTH_CANDIDATES[:2]]
+    elif candidate_set == "advanced":
+        chosen = [BASELINE, *MTP_ADVANCED_CANDIDATES]
     elif candidate_set == "dspark":
         chosen = [BASELINE, *DSPARK_CANDIDATES]
     else:
@@ -243,7 +270,11 @@ def start_server(
         stderr=subprocess.STDOUT,
         text=True,
         start_new_session=True,
-        env={**os.environ, "PYTHONUNBUFFERED": "1"},
+        env={
+            **os.environ,
+            "PYTHONUNBUFFERED": "1",
+            **({"SGLANG_ENABLE_SPEC_V2": "1"} if candidate.enable_spec_v2 else {}),
+        },
     )
     ready, detail = wait_ready(process)
     startup_s = time.perf_counter() - started
@@ -447,7 +478,7 @@ def main() -> int:
     parser.add_argument("--budget-seconds", type=int, default=10620)
     parser.add_argument(
         "--candidate-set",
-        choices=("all", "mtp", "mtp_depth", "finalists", "dspark"),
+        choices=("all", "mtp", "mtp_depth", "finalists", "advanced", "dspark"),
         default="all",
     )
     parser.add_argument("--draft-model-path")

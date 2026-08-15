@@ -15,8 +15,34 @@ parity is retained as a stricter diagnostic, not a rejection criterion.
 
 ## Measured result
 
-The single-GPU Hugging Face run is in progress. This section and
-`config/selected_profiles.env` are replaced with the measured winners when it completes.
+Measured on an NVIDIA RTX PRO 6000 Blackwell Server Edition (96 GB) with the pinned SGLang
+Qwen3.8 image. Values are medians across six streaming requests; the natural workload uses a
+108-token technical prompt and 512 generated tokens, while stress uses 1,024 repeated input
+tokens and 512 generated tokens.
+
+| Profile | Natural single-stream | 1K stress single-stream | Natural TTFT | Concurrency-32 |
+|---|---:|---:|---:|---:|
+| Non-speculative reference | 45.96 tok/s | 45.96 tok/s | 64.96 ms | 1,087.1 tok/s |
+| `latency` — MTP depth 2 | 80.61 tok/s | **102.38 tok/s** | **54.95 ms** | **1,344.5 tok/s** |
+| `throughput` — MTP depth 3 | **87.70 tok/s** | 97.40 tok/s | 57.36 ms | 1,265.1 tok/s |
+
+The throughput profile is 1.91x the natural single-stream baseline. All three final profiles
+answered 12/12 task-level quality probes correctly. The two MTP profiles were byte-identical on
+9/12; the differences were semantically equivalent wording or formatting. A second clean run
+reproduced the finalist rates within 0.1%.
+
+The selected depth-3 profile passed a request with **262,080 measured input tokens plus 8 output
+tokens**. Near-limit TTFT was 105.08 seconds. BF16 KV and FP32 GDN state were retained.
+
+### DSpark / DFlash-family result
+
+The trained 1.36B DSpark checkpoint was tested, not assumed. Its best 1K-stress result was
+61.23 tok/s, 72.34 ms TTFT, and 550.0 tok/s at concurrency 32; all 12 correctness probes passed.
+Its average accepted block collapsed on the repeated stress output, while real task probes showed
+bursts up to roughly 153 tok/s. FA3 is not available on SM120 in the pinned image, and loading the
+BF16 draft reduced its allocated KV pool below 262K. DSpark is therefore included for
+experimentation but is not eligible as a default; native MTP is faster, uses less memory, and
+passes the full-context requirement here.
 
 ## Why these quality constraints
 
@@ -32,11 +58,12 @@ The single-GPU Hugging Face run is in progress. This section and
 
 ## Run on your RTX PRO 6000
 
-Install a recent NVIDIA driver and Docker with NVIDIA Container Toolkit, then download the model
-locally:
+Install a recent NVIDIA driver and Docker with NVIDIA Container Toolkit, then download the target
+model locally. The DSpark download is optional and only needed to rerun that part of the sweep:
 
 ```bash
 hf download Qwen/Qwen3.8-27B-FP8 --local-dir ./model
+# Optional:
 hf download RadixArk/Qwen3.8-27B-DSpark --local-dir ./draft
 ```
 
@@ -44,7 +71,7 @@ Build and launch the measured throughput profile:
 
 ```bash
 docker compose build
-PROFILE=throughput MODEL_DIR="$PWD/model" DRAFT_MODEL_DIR="$PWD/draft" docker compose up
+PROFILE=throughput MODEL_DIR="$PWD/model" docker compose up
 ```
 
 For lowest time to first token, use `PROFILE=latency`. Both expose an OpenAI-compatible endpoint:
