@@ -24,5 +24,6 @@ hf jobs run \
   --env JOB_BUDGET_SECONDS=10620 \
   --volume hf://Qwen/Qwen3.8-27B-FP8:/model:ro \
   --volume "hf://buckets/${NAMESPACE}/${BUCKET}:/results" \
+  -- \
   "${IMAGE}" \
   bash -lc 'git clone --depth 1 https://github.com/SSHDotCodes/blackwell-qwen.git /tmp/blackwell-qwen && exec bash /tmp/blackwell-qwen/scripts/hf_job.sh'
