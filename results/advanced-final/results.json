@@ -1,0 +1,1700 @@
+{
+  "candidates": {
+    "flashinfer_auto_c2k": {
+      "benchmarks": {
+        "latency": {
+          "concurrency": 1,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 46.06155334331565,
+          "median_latency_s": 11.181565849808976,
+          "median_ttft_ms": 65.65605651121587,
+          "output_tokens": 3072,
+          "output_tokens_per_s": 45.8446796778005,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 69.70766209997237,
+          "requests": 6,
+          "successful": 6,
+          "wall_s": 67.00886605796404,
+          "warmup_ok": true
+        },
+        "realistic_single_stream": {
+          "concurrency": 1,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 108,
+          "input_tokens_requested": 0,
+          "median_decode_tokens_per_s": 45.9154427403304,
+          "median_latency_s": 11.21080046100542,
+          "median_ttft_ms": 65.93367550522089,
+          "output_tokens": 3072,
+          "output_tokens_per_s": 45.33435682206529,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 387.6206739805639,
+          "requests": 6,
+          "successful": 6,
+          "wall_s": 67.76317599602044,
+          "warmup_ok": true
+        },
+        "throughput_c16": {
+          "concurrency": 16,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 39.6921131684561,
+          "median_latency_s": 13.05935182259418,
+          "median_ttft_ms": 160.23768996819854,
+          "output_tokens": 16384,
+          "output_tokens_per_s": 627.1614766766461,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 161.84665642213076,
+          "requests": 32,
+          "successful": 32,
+          "wall_s": 26.12405354809016,
+          "warmup_ok": true
+        },
+        "throughput_c32": {
+          "concurrency": 32,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 34.53332643467754,
+          "median_latency_s": 15.03029512357898,
+          "median_ttft_ms": 200.29742701444775,
+          "output_tokens": 32768,
+          "output_tokens_per_s": 1089.8151356891888,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 243.1207921123132,
+          "requests": 64,
+          "successful": 64,
+          "wall_s": 30.067484775092453,
+          "warmup_ok": true
+        }
+      },
+      "candidate": {
+        "attention_backend": "flashinfer",
+        "chunked_prefill": 2048,
+        "cuda_graph_max_bs": 32,
+        "draft_model_path": null,
+        "enable_spec_v2": false,
+        "fp8_gemm_backend": "auto",
+        "mamba_ratio": 1.8,
+        "max_running_requests": 32,
+        "name": "flashinfer_auto_c2k",
+        "page_size": 1,
+        "speculative_algorithm": null,
+        "speculative_attention_mode": null,
+        "speculative_num_draft_tokens": 4,
+        "speculative_num_steps": 3
+      },
+      "quality": {
+        "correct_answers": 12,
+        "exact_matches": 12,
+        "quality_safe": true,
+        "reference": true,
+        "total": 12
+      },
+      "startup_s": 155.05007244599983,
+      "status": "completed"
+    },
+    "flashinfer_cutlass_mtp_s2_decode_p1": {
+      "benchmarks": {
+        "latency": {
+          "concurrency": 1,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 102.19335372144474,
+          "median_latency_s": 5.06995104404632,
+          "median_ttft_ms": 59.84375404659659,
+          "output_tokens": 3072,
+          "output_tokens_per_s": 100.97250680878767,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 61.40958855394274,
+          "requests": 6,
+          "successful": 6,
+          "wall_s": 30.424123329110444,
+          "warmup_ok": true
+        },
+        "realistic_single_stream": {
+          "concurrency": 1,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 108,
+          "input_tokens_requested": 0,
+          "median_decode_tokens_per_s": 80.47954656192636,
+          "median_latency_s": 6.419182020006701,
+          "median_ttft_ms": 57.06815386656672,
+          "output_tokens": 3072,
+          "output_tokens_per_s": 79.7550329728745,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 58.39747202116996,
+          "requests": 6,
+          "successful": 6,
+          "wall_s": 38.51794533198699,
+          "warmup_ok": true
+        },
+        "throughput_c16": {
+          "concurrency": 16,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 69.64053843046298,
+          "median_latency_s": 7.559315166436136,
+          "median_ttft_ms": 157.4668245157227,
+          "output_tokens": 16384,
+          "output_tokens_per_s": 1067.0460965881894,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 229.9839726416394,
+          "requests": 32,
+          "successful": 32,
+          "wall_s": 15.354538151994348,
+          "warmup_ok": true
+        },
+        "throughput_c32": {
+          "concurrency": 32,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 54.87743262488553,
+          "median_latency_s": 9.596792001510039,
+          "median_ttft_ms": 193.8080886611715,
+          "output_tokens": 32768,
+          "output_tokens_per_s": 1294.222406895494,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 251.71695300377905,
+          "requests": 64,
+          "successful": 64,
+          "wall_s": 25.318677705945447,
+          "warmup_ok": true
+        }
+      },
+      "candidate": {
+        "attention_backend": "flashinfer",
+        "chunked_prefill": 1024,
+        "cuda_graph_max_bs": 32,
+        "draft_model_path": null,
+        "enable_spec_v2": true,
+        "fp8_gemm_backend": "cutlass",
+        "mamba_ratio": 1.8,
+        "max_running_requests": 32,
+        "name": "flashinfer_cutlass_mtp_s2_decode_p1",
+        "page_size": 1,
+        "speculative_algorithm": "EAGLE",
+        "speculative_attention_mode": "decode",
+        "speculative_num_draft_tokens": 3,
+        "speculative_num_steps": 2
+      },
+      "quality": {
+        "comparisons": [
+          {
+            "candidate": "1591",
+            "correct": true,
+            "exact": true,
+            "prompt": "What is 37 * 43? Reply with only the number.",
+            "reference": "1591"
+          },
+          {
+            "candidate": "```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number iteratively.\n    \n    The Fibonacci sequence is defined as:\n    F(0) = 0\n    F(1) = 1\n    F(n) = F(n-1) + F(n-2) for n >= 2\n    \n    Args:\n        n: A non-negative integer representing the position in the Fibonacci sequence.\n        \n    Returns:\n        The nth Fibonacci number.\n        \n    Raises:\n        ValueError: If n is negative.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    \n    prev, curr = 0, 1\n    for _ in range(2, n + 1):\n        prev, curr = curr, prev + curr\n    \n    return curr\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Write a Python function that returns the nth Fibonacci number iteratively.",
+            "reference": "```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number iteratively.\n    \n    The Fibonacci sequence is defined as:\n    F(0) = 0\n    F(1) = 1\n    F(n) = F(n-1) + F(n-2) for n >= 2\n    \n    Args:\n        n: A non-negative integer representing the position in the Fibonacci sequence.\n        \n    Returns:\n        The nth Fibonacci number.\n        \n    Raises:\n        ValueError: If n is negative.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    \n    prev, curr = 0, 1\n    for _ in range(2, n + 1):\n        prev, curr = curr, prev + curr\n    \n    return curr\n```"
+          },
+          {
+            "candidate": "No, no glib can be a flan.\n\n**Explanation:**\n1.  Since **all glibs are trobs**, any specific glib is necessarily a trob.\n2.  Since **no trob is a flan**, any specific trob cannot be a flan.\n3.  Therefore, by logical transitivity, any glib (being a trob) cannot be a flan.",
+            "correct": true,
+            "exact": false,
+            "prompt": "If all glibs are trobs and no trob is a flan, can any glib be a flan? Explain briefly.",
+            "reference": "No, no glib can be a flan.\n\n**Explanation:**\n1.  Since all glibs are trobs, any specific glib is also a trob.\n2.  Since no trob is a flan, that specific glib (being a trob) cannot be a flan.\n3.  Therefore, it is impossible for any glib to be a flan."
+          },
+          {
+            "candidate": "To find the average speed in km/h, we need to ensure the units for distance and time are consistent.\n\n**1. Identify the given values:**\n*   Distance ($d$) = $120$ km\n*   Time ($t$) = $90$ minutes\n\n**2. Convert time to hours:**\nSince the desired speed unit is km/h, we must convert the time from minutes to hours.\n$$ t = \\frac{90 \\text{ minutes}}{60 \\text{ minutes/hour}} = 1.5 \\text{ hours} $$\n\n**3. Calculate the average speed:**\nThe formula for average speed is:\n$$ \\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} $$\n\nSubstitute the values:\n$$ \\text{Speed} = \\frac{120 \\text{ km}}{1.5 \\text{ h}} $$\n\n$$ \\text{Speed} = 80 \\text{ km/h} $$\n\n**Conclusion:**\nThe train's average speed is **80 km/h**.",
+            "correct": true,
+            "exact": true,
+            "prompt": "A train travels 120 km in 90 minutes. What is its average speed in km/h?",
+            "reference": "To find the average speed in km/h, we need to ensure the units for distance and time are consistent.\n\n**1. Identify the given values:**\n*   Distance ($d$) = $120$ km\n*   Time ($t$) = $90$ minutes\n\n**2. Convert time to hours:**\nSince the desired speed unit is km/h, we must convert the time from minutes to hours.\n$$ t = \\frac{90 \\text{ minutes}}{60 \\text{ minutes/hour}} = 1.5 \\text{ hours} $$\n\n**3. Calculate the average speed:**\nThe formula for average speed is:\n$$ \\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} $$\n\nSubstitute the values:\n$$ \\text{Speed} = \\frac{120 \\text{ km}}{1.5 \\text{ h}} $$\n\n$$ \\text{Speed} = 80 \\text{ km/h} $$\n\n**Conclusion:**\nThe train's average speed is **80 km/h**."
+          },
+          {
+            "candidate": "TCP is a connection-oriented protocol that ensures reliable, ordered delivery of data through handshakes and acknowledgments, making it ideal for applications like web browsing and email. In contrast, UDP is a connectionless protocol that prioritizes speed and low latency by sending data without establishing a connection or guaranteeing delivery, which suits real-time applications like video streaming and gaming.",
+            "correct": true,
+            "exact": false,
+            "prompt": "Summarize the difference between TCP and UDP in two sentences.",
+            "reference": "TCP is a connection-oriented protocol that ensures reliable, ordered delivery of data through handshakes and acknowledgments, making it ideal for applications like web browsing and email. In contrast, UDP is a connectionless protocol that prioritizes speed and low overhead by sending data without guarantees of delivery or order, which suits real-time applications like video streaming and gaming."
+          },
+          {
+            "candidate": "```json\n{\n  \"name\": \"primes\",\n  \"primes\": [2, 3, 5, 7, 11]\n}\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Return valid JSON with keys name and primes, where primes contains the first five primes.",
+            "reference": "```json\n{\n  \"name\": \"primes\",\n  \"primes\": [2, 3, 5, 7, 11]\n}\n```"
+          },
+          {
+            "candidate": "x = 8\n\nVerification: $3(8) + 7 = 24 + 7 = 31$",
+            "correct": true,
+            "exact": true,
+            "prompt": "Solve 3x + 7 = 31. Reply with x and one verification step.",
+            "reference": "x = 8\n\nVerification: $3(8) + 7 = 24 + 7 = 31$"
+          },
+          {
+            "candidate": "Il fait beau aujourd'hui.",
+            "correct": true,
+            "exact": true,
+            "prompt": "Translate 'The weather is pleasant today' into French.",
+            "reference": "Il fait beau aujourd'hui."
+          },
+          {
+            "candidate": "The planet with the shortest year is **Mercury**.\n\n### Reasoning:\n1.  **Orbital Mechanics**: According to Kepler's Third Law of Planetary Motion, the square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. This means that planets closer to the Sun have shorter orbital periods (shorter years).\n2.  **Proximity to the Sun**: Mercury is the closest planet to the Sun in our solar system.\n3.  **Comparison**:\n    *   Mercury: ~88 Earth days\n    *   Venus: ~225 Earth days\n    *   Earth: ~365.25 Earth days\n    *   (Outer planets have significantly longer years, ranging from several years to over 160 years for Neptune).\n\n### Conclusion:\n*   **Planet**: Mercury\n*   **Approximate Orbital Period**: **88 Earth days** (specifically, about 87.97 Earth days).",
+            "correct": true,
+            "exact": false,
+            "prompt": "Name the planet with the shortest year and state its orbital period approximately.",
+            "reference": "The planet with the shortest year is **Mercury**.\n\n### Reasoning:\n1.  **Orbital Mechanics**: According to Kepler's Third Law of Planetary Motion, the square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. This means that planets closer to the Sun have shorter orbital periods (shorter years).\n2.  **Proximity to the Sun**: Mercury is the closest planet to the Sun in our solar system.\n3.  **Comparison**:\n    *   Mercury: ~88 Earth days\n    *   Venus: ~225 Earth days\n    *   Earth: ~365.25 Earth days\n    *   (Other planets have significantly longer periods)\n\n### Conclusion:\n*   **Planet**: Mercury\n*   **Approximate Orbital Period**: **88 Earth days** (or approximately 0.24 Earth years)."
+          },
+          {
+            "candidate": "A simple counterexample is **9**.\n\n**Reasoning:**\n1.  **9 is an odd number**: It is not divisible by 2.\n2.  **9 is not a prime number**: It has divisors other than 1 and itself (specifically, $3 \\times 3 = 9$).\n\nTherefore, the claim that \"every odd number is prime\" is false.",
+            "correct": true,
+            "exact": true,
+            "prompt": "Give one counterexample to the claim that every odd number is prime.",
+            "reference": "A simple counterexample is **9**.\n\n**Reasoning:**\n1.  **9 is an odd number**: It is not divisible by 2.\n2.  **9 is not a prime number**: It has divisors other than 1 and itself (specifically, $3 \\times 3 = 9$).\n\nTherefore, the claim that \"every odd number is prime\" is false."
+          },
+          {
+            "candidate": "```javascript\nfunction binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n\n    return -1;\n}\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Implement binary search in JavaScript without recursion.",
+            "reference": "```javascript\nfunction binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n\n    return -1;\n}\n```"
+          },
+          {
+            "candidate": "To determine which is larger, we calculate the value of each expression:\n\n1.  **Calculate $2^{10}$:**\n    $$2^{10} = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 1024$$\n\n2.  **Calculate $10^3$:**\n    $$10^3 = 10 \\times 10 \\times 10 = 1000$$\n\n**Comparison:**\n$$1024 > 1000$$\n\n**Conclusion:**\n$2^{10}$ is larger.\n\n**Values:**\n*   $2^{10} = 1024$\n*   $10^3 = 1000$",
+            "correct": true,
+            "exact": true,
+            "prompt": "Which is larger: 2^10 or 10^3? Reply with both values.",
+            "reference": "To determine which is larger, we calculate the value of each expression:\n\n1.  **Calculate $2^{10}$:**\n    $$2^{10} = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 1024$$\n\n2.  **Calculate $10^3$:**\n    $$10^3 = 10 \\times 10 \\times 10 = 1000$$\n\n**Comparison:**\n$$1024 > 1000$$\n\n**Conclusion:**\n$2^{10}$ is larger.\n\n**Values:**\n*   $2^{10} = 1024$\n*   $10^3 = 1000$"
+          }
+        ],
+        "correct_answers": 12,
+        "exact_matches": 9,
+        "quality_safe": true,
+        "total": 12
+      },
+      "startup_s": 55.010925001930445,
+      "status": "completed"
+    },
+    "flashinfer_cutlass_mtp_s2_decode_p64": {
+      "benchmarks": {
+        "latency": {
+          "concurrency": 1,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 94.08447899681298,
+          "median_latency_s": 5.503248858381994,
+          "median_ttft_ms": 61.28860602620989,
+          "output_tokens": 3072,
+          "output_tokens_per_s": 93.03798372940604,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 62.27614334784448,
+          "requests": 6,
+          "successful": 6,
+          "wall_s": 33.01877229986712,
+          "warmup_ok": true
+        },
+        "realistic_single_stream": {
+          "concurrency": 1,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 108,
+          "input_tokens_requested": 0,
+          "median_decode_tokens_per_s": 79.04837335562875,
+          "median_latency_s": 6.5332280460279435,
+          "median_ttft_ms": 56.93115899339318,
+          "output_tokens": 3072,
+          "output_tokens_per_s": 78.35988112112236,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 58.06662852410227,
+          "requests": 6,
+          "successful": 6,
+          "wall_s": 39.20373482001014,
+          "warmup_ok": true
+        },
+        "throughput_c16": {
+          "concurrency": 16,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 65.46926700707624,
+          "median_latency_s": 8.368731174152344,
+          "median_ttft_ms": 321.33583340328187,
+          "output_tokens": 16384,
+          "output_tokens_per_s": 934.2740647985514,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 715.3419029666111,
+          "requests": 32,
+          "successful": 32,
+          "wall_s": 17.536610099021345,
+          "warmup_ok": true
+        },
+        "throughput_c32": {
+          "concurrency": 32,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 50.450211307406065,
+          "median_latency_s": 10.660750150447711,
+          "median_ttft_ms": 193.30227153841406,
+          "output_tokens": 32768,
+          "output_tokens_per_s": 1270.9126280981882,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 507.73693835362786,
+          "requests": 64,
+          "successful": 64,
+          "wall_s": 25.783046981785446,
+          "warmup_ok": true
+        }
+      },
+      "candidate": {
+        "attention_backend": "flashinfer",
+        "chunked_prefill": 1024,
+        "cuda_graph_max_bs": 32,
+        "draft_model_path": null,
+        "enable_spec_v2": true,
+        "fp8_gemm_backend": "cutlass",
+        "mamba_ratio": 1.8,
+        "max_running_requests": 32,
+        "name": "flashinfer_cutlass_mtp_s2_decode_p64",
+        "page_size": 64,
+        "speculative_algorithm": "EAGLE",
+        "speculative_attention_mode": "decode",
+        "speculative_num_draft_tokens": 3,
+        "speculative_num_steps": 2
+      },
+      "quality": {
+        "comparisons": [
+          {
+            "candidate": "1591",
+            "correct": true,
+            "exact": true,
+            "prompt": "What is 37 * 43? Reply with only the number.",
+            "reference": "1591"
+          },
+          {
+            "candidate": "```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number iteratively.\n    \n    The Fibonacci sequence is defined as:\n    F(0) = 0\n    F(1) = 1\n    F(n) = F(n-1) + F(n-2) for n >= 2\n    \n    Args:\n        n: A non-negative integer representing the position in the Fibonacci sequence.\n        \n    Returns:\n        The nth Fibonacci number.\n        \n    Raises:\n        ValueError: If n is negative.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    \n    prev, curr = 0, 1\n    for _ in range(2, n + 1):\n        prev, curr = curr, prev + curr\n    \n    return curr\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Write a Python function that returns the nth Fibonacci number iteratively.",
+            "reference": "```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number iteratively.\n    \n    The Fibonacci sequence is defined as:\n    F(0) = 0\n    F(1) = 1\n    F(n) = F(n-1) + F(n-2) for n >= 2\n    \n    Args:\n        n: A non-negative integer representing the position in the Fibonacci sequence.\n        \n    Returns:\n        The nth Fibonacci number.\n        \n    Raises:\n        ValueError: If n is negative.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    \n    prev, curr = 0, 1\n    for _ in range(2, n + 1):\n        prev, curr = curr, prev + curr\n    \n    return curr\n```"
+          },
+          {
+            "candidate": "No, no glib can be a flan.\n\n**Explanation:**\n1.  Since **all glibs are trobs**, any specific glib is necessarily a trob.\n2.  Since **no trob is a flan**, any specific trob cannot be a flan.\n3.  Therefore, by logical transitivity, any glib (being a trob) cannot be a flan.",
+            "correct": true,
+            "exact": false,
+            "prompt": "If all glibs are trobs and no trob is a flan, can any glib be a flan? Explain briefly.",
+            "reference": "No, no glib can be a flan.\n\n**Explanation:**\n1.  Since all glibs are trobs, any specific glib is also a trob.\n2.  Since no trob is a flan, that specific glib (being a trob) cannot be a flan.\n3.  Therefore, it is impossible for any glib to be a flan."
+          },
+          {
+            "candidate": "To find the average speed in km/h, we need to ensure the units for distance and time are consistent.\n\n**1. Identify the given values:**\n*   Distance ($d$) = $120$ km\n*   Time ($t$) = $90$ minutes\n\n**2. Convert time to hours:**\nSince the desired speed unit is km/h, we must convert the time from minutes to hours.\n$$ t = \\frac{90 \\text{ minutes}}{60 \\text{ minutes/hour}} = 1.5 \\text{ hours} $$\n\n**3. Calculate the average speed:**\nThe formula for average speed is:\n$$ \\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} $$\n\nSubstitute the values:\n$$ \\text{Speed} = \\frac{120 \\text{ km}}{1.5 \\text{ h}} $$\n\n$$ \\text{Speed} = 80 \\text{ km/h} $$\n\n**Conclusion:**\nThe train's average speed is **80 km/h**.",
+            "correct": true,
+            "exact": true,
+            "prompt": "A train travels 120 km in 90 minutes. What is its average speed in km/h?",
+            "reference": "To find the average speed in km/h, we need to ensure the units for distance and time are consistent.\n\n**1. Identify the given values:**\n*   Distance ($d$) = $120$ km\n*   Time ($t$) = $90$ minutes\n\n**2. Convert time to hours:**\nSince the desired speed unit is km/h, we must convert the time from minutes to hours.\n$$ t = \\frac{90 \\text{ minutes}}{60 \\text{ minutes/hour}} = 1.5 \\text{ hours} $$\n\n**3. Calculate the average speed:**\nThe formula for average speed is:\n$$ \\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} $$\n\nSubstitute the values:\n$$ \\text{Speed} = \\frac{120 \\text{ km}}{1.5 \\text{ h}} $$\n\n$$ \\text{Speed} = 80 \\text{ km/h} $$\n\n**Conclusion:**\nThe train's average speed is **80 km/h**."
+          },
+          {
+            "candidate": "TCP is a connection-oriented protocol that ensures reliable, ordered delivery of data through handshakes and acknowledgments, making it ideal for applications like web browsing and email. In contrast, UDP is a connectionless protocol that prioritizes speed and low latency by sending data without establishing a connection or guaranteeing delivery, which suits real-time applications like video streaming and gaming.",
+            "correct": true,
+            "exact": false,
+            "prompt": "Summarize the difference between TCP and UDP in two sentences.",
+            "reference": "TCP is a connection-oriented protocol that ensures reliable, ordered delivery of data through handshakes and acknowledgments, making it ideal for applications like web browsing and email. In contrast, UDP is a connectionless protocol that prioritizes speed and low overhead by sending data without guarantees of delivery or order, which suits real-time applications like video streaming and gaming."
+          },
+          {
+            "candidate": "```json\n{\n  \"name\": \"primes\",\n  \"primes\": [2, 3, 5, 7, 11]\n}\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Return valid JSON with keys name and primes, where primes contains the first five primes.",
+            "reference": "```json\n{\n  \"name\": \"primes\",\n  \"primes\": [2, 3, 5, 7, 11]\n}\n```"
+          },
+          {
+            "candidate": "x = 8\n\nVerification: $3(8) + 7 = 24 + 7 = 31$",
+            "correct": true,
+            "exact": true,
+            "prompt": "Solve 3x + 7 = 31. Reply with x and one verification step.",
+            "reference": "x = 8\n\nVerification: $3(8) + 7 = 24 + 7 = 31$"
+          },
+          {
+            "candidate": "Il fait beau aujourd'hui.",
+            "correct": true,
+            "exact": true,
+            "prompt": "Translate 'The weather is pleasant today' into French.",
+            "reference": "Il fait beau aujourd'hui."
+          },
+          {
+            "candidate": "The planet with the shortest year is **Mercury**.\n\n### Reasoning:\n1.  **Orbital Mechanics**: According to Kepler's Third Law of Planetary Motion, the square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. This means that planets closer to the Sun have shorter orbital periods (shorter years).\n2.  **Proximity to the Sun**: Mercury is the closest planet to the Sun in our solar system.\n3.  **Comparison**:\n    *   Mercury: ~88 Earth days\n    *   Venus: ~225 Earth days\n    *   Earth: ~365.25 Earth days\n    *   (Outer planets have significantly longer years, ranging from several years to over 160 years for Neptune).\n\n### Conclusion:\n*   **Planet**: Mercury\n*   **Approximate Orbital Period**: **88 Earth days** (specifically, about 87.97 Earth days).",
+            "correct": true,
+            "exact": false,
+            "prompt": "Name the planet with the shortest year and state its orbital period approximately.",
+            "reference": "The planet with the shortest year is **Mercury**.\n\n### Reasoning:\n1.  **Orbital Mechanics**: According to Kepler's Third Law of Planetary Motion, the square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. This means that planets closer to the Sun have shorter orbital periods (shorter years).\n2.  **Proximity to the Sun**: Mercury is the closest planet to the Sun in our solar system.\n3.  **Comparison**:\n    *   Mercury: ~88 Earth days\n    *   Venus: ~225 Earth days\n    *   Earth: ~365.25 Earth days\n    *   (Other planets have significantly longer periods)\n\n### Conclusion:\n*   **Planet**: Mercury\n*   **Approximate Orbital Period**: **88 Earth days** (or approximately 0.24 Earth years)."
+          },
+          {
+            "candidate": "A simple counterexample is **9**.\n\n**Reasoning:**\n1.  **9 is an odd number**: It is not divisible by 2.\n2.  **9 is not a prime number**: It has divisors other than 1 and itself (specifically, $3 \\times 3 = 9$).\n\nTherefore, the claim that \"every odd number is prime\" is false.",
+            "correct": true,
+            "exact": true,
+            "prompt": "Give one counterexample to the claim that every odd number is prime.",
+            "reference": "A simple counterexample is **9**.\n\n**Reasoning:**\n1.  **9 is an odd number**: It is not divisible by 2.\n2.  **9 is not a prime number**: It has divisors other than 1 and itself (specifically, $3 \\times 3 = 9$).\n\nTherefore, the claim that \"every odd number is prime\" is false."
+          },
+          {
+            "candidate": "```javascript\nfunction binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n\n    return -1;\n}\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Implement binary search in JavaScript without recursion.",
+            "reference": "```javascript\nfunction binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n\n    return -1;\n}\n```"
+          },
+          {
+            "candidate": "To determine which is larger, we calculate the value of each expression:\n\n1.  **Calculate $2^{10}$:**\n    $$2^{10} = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 1024$$\n\n2.  **Calculate $10^3$:**\n    $$10^3 = 10 \\times 10 \\times 10 = 1000$$\n\n**Comparison:**\n$$1024 > 1000$$\n\n**Conclusion:**\n$2^{10}$ is larger.\n\n**Values:**\n*   $2^{10} = 1024$\n*   $10^3 = 1000$",
+            "correct": true,
+            "exact": true,
+            "prompt": "Which is larger: 2^10 or 10^3? Reply with both values.",
+            "reference": "To determine which is larger, we calculate the value of each expression:\n\n1.  **Calculate $2^{10}$:**\n    $$2^{10} = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 1024$$\n\n2.  **Calculate $10^3$:**\n    $$10^3 = 10 \\times 10 \\times 10 = 1000$$\n\n**Comparison:**\n$$1024 > 1000$$\n\n**Conclusion:**\n$2^{10}$ is larger.\n\n**Values:**\n*   $2^{10} = 1024$\n*   $10^3 = 1000$"
+          }
+        ],
+        "correct_answers": 12,
+        "exact_matches": 9,
+        "quality_safe": true,
+        "total": 12
+      },
+      "startup_s": 50.00592505582608,
+      "status": "completed"
+    },
+    "flashinfer_cutlass_mtp_s3_decode_p1": {
+      "benchmarks": {
+        "latency": {
+          "concurrency": 1,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 97.4087700499974,
+          "median_latency_s": 5.317549875588156,
+          "median_ttft_ms": 60.832484043203294,
+          "output_tokens": 3072,
+          "output_tokens_per_s": 96.248936094701,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 67.50019441824406,
+          "requests": 6,
+          "successful": 6,
+          "wall_s": 31.91723591601476,
+          "warmup_ok": true
+        },
+        "realistic_single_stream": {
+          "concurrency": 1,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 108,
+          "input_tokens_requested": 0,
+          "median_decode_tokens_per_s": 87.71105376713683,
+          "median_latency_s": 5.893928093020804,
+          "median_ttft_ms": 56.51746306102723,
+          "output_tokens": 3072,
+          "output_tokens_per_s": 86.87125254906017,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 57.207345962524414,
+          "requests": 6,
+          "successful": 6,
+          "wall_s": 35.36267648800276,
+          "warmup_ok": true
+        },
+        "throughput_c16": {
+          "concurrency": 16,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 68.4219262336209,
+          "median_latency_s": 7.646420042496175,
+          "median_ttft_ms": 183.32815601024777,
+          "output_tokens": 16384,
+          "output_tokens_per_s": 1064.395269626457,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 225.63311718404293,
+          "requests": 32,
+          "successful": 32,
+          "wall_s": 15.392777915811166,
+          "warmup_ok": true
+        },
+        "throughput_c32": {
+          "concurrency": 32,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 54.42975402533103,
+          "median_latency_s": 9.634726134478115,
+          "median_ttft_ms": 198.88313405681401,
+          "output_tokens": 32768,
+          "output_tokens_per_s": 1264.346680355571,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 9235.582114453427,
+          "requests": 64,
+          "successful": 64,
+          "wall_s": 25.91694233007729,
+          "warmup_ok": true
+        }
+      },
+      "candidate": {
+        "attention_backend": "flashinfer",
+        "chunked_prefill": 1024,
+        "cuda_graph_max_bs": 32,
+        "draft_model_path": null,
+        "enable_spec_v2": true,
+        "fp8_gemm_backend": "cutlass",
+        "mamba_ratio": 1.8,
+        "max_running_requests": 32,
+        "name": "flashinfer_cutlass_mtp_s3_decode_p1",
+        "page_size": 1,
+        "speculative_algorithm": "EAGLE",
+        "speculative_attention_mode": "decode",
+        "speculative_num_draft_tokens": 4,
+        "speculative_num_steps": 3
+      },
+      "quality": {
+        "comparisons": [
+          {
+            "candidate": "1591",
+            "correct": true,
+            "exact": true,
+            "prompt": "What is 37 * 43? Reply with only the number.",
+            "reference": "1591"
+          },
+          {
+            "candidate": "```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number iteratively.\n    \n    The Fibonacci sequence is defined as:\n    F(0) = 0\n    F(1) = 1\n    F(n) = F(n-1) + F(n-2) for n >= 2\n    \n    Args:\n        n: A non-negative integer representing the position in the Fibonacci sequence.\n        \n    Returns:\n        The nth Fibonacci number.\n        \n    Raises:\n        ValueError: If n is negative.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    \n    prev, curr = 0, 1\n    for _ in range(2, n + 1):\n        prev, curr = curr, prev + curr\n    \n    return curr\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Write a Python function that returns the nth Fibonacci number iteratively.",
+            "reference": "```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number iteratively.\n    \n    The Fibonacci sequence is defined as:\n    F(0) = 0\n    F(1) = 1\n    F(n) = F(n-1) + F(n-2) for n >= 2\n    \n    Args:\n        n: A non-negative integer representing the position in the Fibonacci sequence.\n        \n    Returns:\n        The nth Fibonacci number.\n        \n    Raises:\n        ValueError: If n is negative.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    \n    prev, curr = 0, 1\n    for _ in range(2, n + 1):\n        prev, curr = curr, prev + curr\n    \n    return curr\n```"
+          },
+          {
+            "candidate": "No, no glib can be a flan.\n\n**Explanation:**\n1.  Since **all glibs are trobs**, any specific glib is necessarily a trob.\n2.  Since **no trob is a flan**, any specific trob cannot be a flan.\n3.  Therefore, by logical transitivity, any glib (being a trob) cannot be a flan.",
+            "correct": true,
+            "exact": false,
+            "prompt": "If all glibs are trobs and no trob is a flan, can any glib be a flan? Explain briefly.",
+            "reference": "No, no glib can be a flan.\n\n**Explanation:**\n1.  Since all glibs are trobs, any specific glib is also a trob.\n2.  Since no trob is a flan, that specific glib (being a trob) cannot be a flan.\n3.  Therefore, it is impossible for any glib to be a flan."
+          },
+          {
+            "candidate": "To find the average speed in km/h, we need to ensure the units for distance and time are consistent.\n\n**1. Identify the given values:**\n*   Distance ($d$) = $120$ km\n*   Time ($t$) = $90$ minutes\n\n**2. Convert time to hours:**\nSince the desired speed unit is km/h, we must convert the time from minutes to hours.\n$$ t = \\frac{90 \\text{ minutes}}{60 \\text{ minutes/hour}} = 1.5 \\text{ hours} $$\n\n**3. Calculate the average speed:**\nThe formula for average speed is:\n$$ \\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} $$\n\nSubstitute the values:\n$$ \\text{Speed} = \\frac{120 \\text{ km}}{1.5 \\text{ h}} $$\n\n$$ \\text{Speed} = 80 \\text{ km/h} $$\n\n**Conclusion:**\nThe train's average speed is **80 km/h**.",
+            "correct": true,
+            "exact": true,
+            "prompt": "A train travels 120 km in 90 minutes. What is its average speed in km/h?",
+            "reference": "To find the average speed in km/h, we need to ensure the units for distance and time are consistent.\n\n**1. Identify the given values:**\n*   Distance ($d$) = $120$ km\n*   Time ($t$) = $90$ minutes\n\n**2. Convert time to hours:**\nSince the desired speed unit is km/h, we must convert the time from minutes to hours.\n$$ t = \\frac{90 \\text{ minutes}}{60 \\text{ minutes/hour}} = 1.5 \\text{ hours} $$\n\n**3. Calculate the average speed:**\nThe formula for average speed is:\n$$ \\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} $$\n\nSubstitute the values:\n$$ \\text{Speed} = \\frac{120 \\text{ km}}{1.5 \\text{ h}} $$\n\n$$ \\text{Speed} = 80 \\text{ km/h} $$\n\n**Conclusion:**\nThe train's average speed is **80 km/h**."
+          },
+          {
+            "candidate": "TCP is a connection-oriented protocol that ensures reliable, ordered delivery of data through handshakes and acknowledgments, making it ideal for applications like web browsing and email. In contrast, UDP is a connectionless protocol that prioritizes speed and low latency by sending data without establishing a connection or guaranteeing delivery, which suits real-time applications like video streaming and gaming.",
+            "correct": true,
+            "exact": false,
+            "prompt": "Summarize the difference between TCP and UDP in two sentences.",
+            "reference": "TCP is a connection-oriented protocol that ensures reliable, ordered delivery of data through handshakes and acknowledgments, making it ideal for applications like web browsing and email. In contrast, UDP is a connectionless protocol that prioritizes speed and low overhead by sending data without guarantees of delivery or order, which suits real-time applications like video streaming and gaming."
+          },
+          {
+            "candidate": "```json\n{\n  \"name\": \"primes\",\n  \"primes\": [2, 3, 5, 7, 11]\n}\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Return valid JSON with keys name and primes, where primes contains the first five primes.",
+            "reference": "```json\n{\n  \"name\": \"primes\",\n  \"primes\": [2, 3, 5, 7, 11]\n}\n```"
+          },
+          {
+            "candidate": "x = 8\n\nVerification: $3(8) + 7 = 24 + 7 = 31$",
+            "correct": true,
+            "exact": true,
+            "prompt": "Solve 3x + 7 = 31. Reply with x and one verification step.",
+            "reference": "x = 8\n\nVerification: $3(8) + 7 = 24 + 7 = 31$"
+          },
+          {
+            "candidate": "Il fait beau aujourd'hui.",
+            "correct": true,
+            "exact": true,
+            "prompt": "Translate 'The weather is pleasant today' into French.",
+            "reference": "Il fait beau aujourd'hui."
+          },
+          {
+            "candidate": "The planet with the shortest year is **Mercury**.\n\n### Reasoning:\n1.  **Orbital Mechanics**: According to Kepler's Third Law of Planetary Motion, the square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. This means that planets closer to the Sun have shorter orbital periods (shorter years).\n2.  **Proximity to the Sun**: Mercury is the closest planet to the Sun in our solar system.\n3.  **Comparison**:\n    *   Mercury: ~88 Earth days\n    *   Venus: ~225 Earth days\n    *   Earth: ~365.25 Earth days\n    *   (Outer planets have significantly longer years, ranging from several years to over 160 years for Neptune).\n\n### Conclusion:\n*   **Planet**: Mercury\n*   **Approximate Orbital Period**: **88 Earth days** (specifically, about 87.97 Earth days).",
+            "correct": true,
+            "exact": false,
+            "prompt": "Name the planet with the shortest year and state its orbital period approximately.",
+            "reference": "The planet with the shortest year is **Mercury**.\n\n### Reasoning:\n1.  **Orbital Mechanics**: According to Kepler's Third Law of Planetary Motion, the square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. This means that planets closer to the Sun have shorter orbital periods (shorter years).\n2.  **Proximity to the Sun**: Mercury is the closest planet to the Sun in our solar system.\n3.  **Comparison**:\n    *   Mercury: ~88 Earth days\n    *   Venus: ~225 Earth days\n    *   Earth: ~365.25 Earth days\n    *   (Other planets have significantly longer periods)\n\n### Conclusion:\n*   **Planet**: Mercury\n*   **Approximate Orbital Period**: **88 Earth days** (or approximately 0.24 Earth years)."
+          },
+          {
+            "candidate": "A simple counterexample is **9**.\n\n**Reasoning:**\n1.  **9 is an odd number**: It is not divisible by 2.\n2.  **9 is not a prime number**: It has divisors other than 1 and itself (specifically, $3 \\times 3 = 9$).\n\nTherefore, the claim that \"every odd number is prime\" is false.",
+            "correct": true,
+            "exact": true,
+            "prompt": "Give one counterexample to the claim that every odd number is prime.",
+            "reference": "A simple counterexample is **9**.\n\n**Reasoning:**\n1.  **9 is an odd number**: It is not divisible by 2.\n2.  **9 is not a prime number**: It has divisors other than 1 and itself (specifically, $3 \\times 3 = 9$).\n\nTherefore, the claim that \"every odd number is prime\" is false."
+          },
+          {
+            "candidate": "```javascript\nfunction binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n\n    return -1;\n}\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Implement binary search in JavaScript without recursion.",
+            "reference": "```javascript\nfunction binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n\n    return -1;\n}\n```"
+          },
+          {
+            "candidate": "To determine which is larger, we calculate the value of each expression:\n\n1.  **Calculate $2^{10}$:**\n    $$2^{10} = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 1024$$\n\n2.  **Calculate $10^3$:**\n    $$10^3 = 10 \\times 10 \\times 10 = 1000$$\n\n**Comparison:**\n$$1024 > 1000$$\n\n**Conclusion:**\n$2^{10}$ is larger.\n\n**Values:**\n*   $2^{10} = 1024$\n*   $10^3 = 1000$",
+            "correct": true,
+            "exact": true,
+            "prompt": "Which is larger: 2^10 or 10^3? Reply with both values.",
+            "reference": "To determine which is larger, we calculate the value of each expression:\n\n1.  **Calculate $2^{10}$:**\n    $$2^{10} = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 1024$$\n\n2.  **Calculate $10^3$:**\n    $$10^3 = 10 \\times 10 \\times 10 = 1000$$\n\n**Comparison:**\n$$1024 > 1000$$\n\n**Conclusion:**\n$2^{10}$ is larger.\n\n**Values:**\n*   $2^{10} = 1024$\n*   $10^3 = 1000$"
+          }
+        ],
+        "correct_answers": 12,
+        "exact_matches": 9,
+        "quality_safe": true,
+        "total": 12
+      },
+      "startup_s": 50.00916492706165,
+      "status": "completed"
+    },
+    "flashinfer_cutlass_mtp_s3_decode_p64": {
+      "benchmarks": {
+        "latency": {
+          "concurrency": 1,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 96.21178765208845,
+          "median_latency_s": 5.382943645468913,
+          "median_ttft_ms": 61.08271551784128,
+          "output_tokens": 3072,
+          "output_tokens_per_s": 95.11742382939039,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 62.22961691673845,
+          "requests": 6,
+          "successful": 6,
+          "wall_s": 32.29692180803977,
+          "warmup_ok": true
+        },
+        "realistic_single_stream": {
+          "concurrency": 1,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 108,
+          "input_tokens_requested": 0,
+          "median_decode_tokens_per_s": 84.54403697985774,
+          "median_latency_s": 6.112976409145631,
+          "median_ttft_ms": 57.12090036831796,
+          "output_tokens": 3072,
+          "output_tokens_per_s": 83.7487600085165,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 58.221677551046014,
+          "requests": 6,
+          "successful": 6,
+          "wall_s": 36.68114011106081,
+          "warmup_ok": true
+        },
+        "throughput_c16": {
+          "concurrency": 16,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 67.44348856026778,
+          "median_latency_s": 7.742405186523683,
+          "median_ttft_ms": 139.5226464373991,
+          "output_tokens": 16384,
+          "output_tokens_per_s": 1048.8858069600858,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 232.5946177355945,
+          "requests": 32,
+          "successful": 32,
+          "wall_s": 15.620384880108759,
+          "warmup_ok": true
+        },
+        "throughput_c32": {
+          "concurrency": 32,
+          "errors": [],
+          "failed": 0,
+          "input_tokens_measured": 1036,
+          "input_tokens_requested": 1024,
+          "median_decode_tokens_per_s": 53.834708626541094,
+          "median_latency_s": 9.664485984598286,
+          "median_ttft_ms": 200.49957290757447,
+          "output_tokens": 32768,
+          "output_tokens_per_s": 1270.8312420052946,
+          "output_tokens_requested": 512,
+          "p90_ttft_ms": 9441.324444231577,
+          "requests": 64,
+          "successful": 64,
+          "wall_s": 25.78469816991128,
+          "warmup_ok": true
+        }
+      },
+      "candidate": {
+        "attention_backend": "flashinfer",
+        "chunked_prefill": 1024,
+        "cuda_graph_max_bs": 32,
+        "draft_model_path": null,
+        "enable_spec_v2": true,
+        "fp8_gemm_backend": "cutlass",
+        "mamba_ratio": 1.8,
+        "max_running_requests": 32,
+        "name": "flashinfer_cutlass_mtp_s3_decode_p64",
+        "page_size": 64,
+        "speculative_algorithm": "EAGLE",
+        "speculative_attention_mode": "decode",
+        "speculative_num_draft_tokens": 4,
+        "speculative_num_steps": 3
+      },
+      "quality": {
+        "comparisons": [
+          {
+            "candidate": "1591",
+            "correct": true,
+            "exact": true,
+            "prompt": "What is 37 * 43? Reply with only the number.",
+            "reference": "1591"
+          },
+          {
+            "candidate": "```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number iteratively.\n    \n    The Fibonacci sequence is defined as:\n    F(0) = 0\n    F(1) = 1\n    F(n) = F(n-1) + F(n-2) for n >= 2\n    \n    Args:\n        n: A non-negative integer representing the position in the Fibonacci sequence.\n        \n    Returns:\n        The nth Fibonacci number.\n        \n    Raises:\n        ValueError: If n is negative.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    \n    prev, curr = 0, 1\n    for _ in range(2, n + 1):\n        prev, curr = curr, prev + curr\n    \n    return curr\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Write a Python function that returns the nth Fibonacci number iteratively.",
+            "reference": "```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number iteratively.\n    \n    The Fibonacci sequence is defined as:\n    F(0) = 0\n    F(1) = 1\n    F(n) = F(n-1) + F(n-2) for n >= 2\n    \n    Args:\n        n: A non-negative integer representing the position in the Fibonacci sequence.\n        \n    Returns:\n        The nth Fibonacci number.\n        \n    Raises:\n        ValueError: If n is negative.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    \n    prev, curr = 0, 1\n    for _ in range(2, n + 1):\n        prev, curr = curr, prev + curr\n    \n    return curr\n```"
+          },
+          {
+            "candidate": "No, no glib can be a flan.\n\n**Explanation:**\n1.  Since **all glibs are trobs**, any specific glib is necessarily a trob.\n2.  Since **no trob is a flan**, any specific trob cannot be a flan.\n3.  Therefore, by logical transitivity, any glib (being a trob) cannot be a flan.",
+            "correct": true,
+            "exact": false,
+            "prompt": "If all glibs are trobs and no trob is a flan, can any glib be a flan? Explain briefly.",
+            "reference": "No, no glib can be a flan.\n\n**Explanation:**\n1.  Since all glibs are trobs, any specific glib is also a trob.\n2.  Since no trob is a flan, that specific glib (being a trob) cannot be a flan.\n3.  Therefore, it is impossible for any glib to be a flan."
+          },
+          {
+            "candidate": "To find the average speed in km/h, we need to ensure the units for distance and time are consistent.\n\n**1. Identify the given values:**\n*   Distance ($d$) = $120$ km\n*   Time ($t$) = $90$ minutes\n\n**2. Convert time to hours:**\nSince the desired speed unit is km/h, we must convert the time from minutes to hours.\n$$ t = \\frac{90 \\text{ minutes}}{60 \\text{ minutes/hour}} = 1.5 \\text{ hours} $$\n\n**3. Calculate the average speed:**\nThe formula for average speed is:\n$$ \\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} $$\n\nSubstitute the values:\n$$ \\text{Speed} = \\frac{120 \\text{ km}}{1.5 \\text{ h}} $$\n\n$$ \\text{Speed} = 80 \\text{ km/h} $$\n\n**Conclusion:**\nThe train's average speed is **80 km/h**.",
+            "correct": true,
+            "exact": true,
+            "prompt": "A train travels 120 km in 90 minutes. What is its average speed in km/h?",
+            "reference": "To find the average speed in km/h, we need to ensure the units for distance and time are consistent.\n\n**1. Identify the given values:**\n*   Distance ($d$) = $120$ km\n*   Time ($t$) = $90$ minutes\n\n**2. Convert time to hours:**\nSince the desired speed unit is km/h, we must convert the time from minutes to hours.\n$$ t = \\frac{90 \\text{ minutes}}{60 \\text{ minutes/hour}} = 1.5 \\text{ hours} $$\n\n**3. Calculate the average speed:**\nThe formula for average speed is:\n$$ \\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} $$\n\nSubstitute the values:\n$$ \\text{Speed} = \\frac{120 \\text{ km}}{1.5 \\text{ h}} $$\n\n$$ \\text{Speed} = 80 \\text{ km/h} $$\n\n**Conclusion:**\nThe train's average speed is **80 km/h**."
+          },
+          {
+            "candidate": "TCP is a connection-oriented protocol that ensures reliable, ordered delivery of data through handshakes and acknowledgments, making it ideal for applications like web browsing and email. In contrast, UDP is a connectionless protocol that prioritizes speed and low latency by sending data without establishing a connection or guaranteeing delivery, which suits real-time applications like video streaming and gaming.",
+            "correct": true,
+            "exact": false,
+            "prompt": "Summarize the difference between TCP and UDP in two sentences.",
+            "reference": "TCP is a connection-oriented protocol that ensures reliable, ordered delivery of data through handshakes and acknowledgments, making it ideal for applications like web browsing and email. In contrast, UDP is a connectionless protocol that prioritizes speed and low overhead by sending data without guarantees of delivery or order, which suits real-time applications like video streaming and gaming."
+          },
+          {
+            "candidate": "```json\n{\n  \"name\": \"primes\",\n  \"primes\": [2, 3, 5, 7, 11]\n}\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Return valid JSON with keys name and primes, where primes contains the first five primes.",
+            "reference": "```json\n{\n  \"name\": \"primes\",\n  \"primes\": [2, 3, 5, 7, 11]\n}\n```"
+          },
+          {
+            "candidate": "x = 8\n\nVerification: $3(8) + 7 = 24 + 7 = 31$",
+            "correct": true,
+            "exact": true,
+            "prompt": "Solve 3x + 7 = 31. Reply with x and one verification step.",
+            "reference": "x = 8\n\nVerification: $3(8) + 7 = 24 + 7 = 31$"
+          },
+          {
+            "candidate": "Il fait beau aujourd'hui.",
+            "correct": true,
+            "exact": true,
+            "prompt": "Translate 'The weather is pleasant today' into French.",
+            "reference": "Il fait beau aujourd'hui."
+          },
+          {
+            "candidate": "The planet with the shortest year is **Mercury**.\n\n### Reasoning:\n1.  **Orbital Mechanics**: According to Kepler's Third Law of Planetary Motion, the square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. This means that planets closer to the Sun have shorter orbital periods (shorter years).\n2.  **Proximity to the Sun**: Mercury is the closest planet to the Sun in our solar system.\n3.  **Comparison**:\n    *   Mercury: ~88 Earth days\n    *   Venus: ~225 Earth days\n    *   Earth: ~365.25 Earth days\n    *   (Outer planets have significantly longer years, ranging from several years to over 160 years for Neptune).\n\n### Conclusion:\n*   **Planet**: Mercury\n*   **Approximate Orbital Period**: **88 Earth days** (specifically, about 87.97 Earth days).",
+            "correct": true,
+            "exact": false,
+            "prompt": "Name the planet with the shortest year and state its orbital period approximately.",
+            "reference": "The planet with the shortest year is **Mercury**.\n\n### Reasoning:\n1.  **Orbital Mechanics**: According to Kepler's Third Law of Planetary Motion, the square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. This means that planets closer to the Sun have shorter orbital periods (shorter years).\n2.  **Proximity to the Sun**: Mercury is the closest planet to the Sun in our solar system.\n3.  **Comparison**:\n    *   Mercury: ~88 Earth days\n    *   Venus: ~225 Earth days\n    *   Earth: ~365.25 Earth days\n    *   (Other planets have significantly longer periods)\n\n### Conclusion:\n*   **Planet**: Mercury\n*   **Approximate Orbital Period**: **88 Earth days** (or approximately 0.24 Earth years)."
+          },
+          {
+            "candidate": "A simple counterexample is **9**.\n\n**Reasoning:**\n1.  **9 is an odd number**: It is not divisible by 2.\n2.  **9 is not a prime number**: It has divisors other than 1 and itself (specifically, $3 \\times 3 = 9$).\n\nTherefore, the claim that \"every odd number is prime\" is false.",
+            "correct": true,
+            "exact": true,
+            "prompt": "Give one counterexample to the claim that every odd number is prime.",
+            "reference": "A simple counterexample is **9**.\n\n**Reasoning:**\n1.  **9 is an odd number**: It is not divisible by 2.\n2.  **9 is not a prime number**: It has divisors other than 1 and itself (specifically, $3 \\times 3 = 9$).\n\nTherefore, the claim that \"every odd number is prime\" is false."
+          },
+          {
+            "candidate": "```javascript\nfunction binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n\n    return -1;\n}\n```",
+            "correct": true,
+            "exact": true,
+            "prompt": "Implement binary search in JavaScript without recursion.",
+            "reference": "```javascript\nfunction binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n\n    return -1;\n}\n```"
+          },
+          {
+            "candidate": "To determine which is larger, we calculate the value of each expression:\n\n1.  **Calculate $2^{10}$:**\n    $$2^{10} = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 1024$$\n\n2.  **Calculate $10^3$:**\n    $$10^3 = 10 \\times 10 \\times 10 = 1000$$\n\n**Comparison:**\n$$1024 > 1000$$\n\n**Conclusion:**\n$2^{10}$ is larger.\n\n**Values:**\n*   $2^{10} = 1024$\n*   $10^3 = 1000$",
+            "correct": true,
+            "exact": true,
+            "prompt": "Which is larger: 2^10 or 10^3? Reply with both values.",
+            "reference": "To determine which is larger, we calculate the value of each expression:\n\n1.  **Calculate $2^{10}$:**\n    $$2^{10} = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 1024$$\n\n2.  **Calculate $10^3$:**\n    $$10^3 = 10 \\times 10 \\times 10 = 1000$$\n\n**Comparison:**\n$$1024 > 1000$$\n\n**Conclusion:**\n$2^{10}$ is larger.\n\n**Values:**\n*   $2^{10} = 1024$\n*   $10^3 = 1000$"
+          }
+        ],
+        "correct_answers": 12,
+        "exact_matches": 9,
+        "quality_safe": true,
+        "total": 12
+      },
+      "startup_s": 50.01121557992883,
+      "status": "completed"
+    }
+  },
+  "environment": {
+    "candidate_set": "advanced",
+    "draft_model_path": "/tmp/Qwen3.8-27B-DSpark",
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition, GPU-b11b1ed3-cbfd-b494-d39b-e6cddeab7266, 580.159.03, 97887 MiB, 600.00 W, 2430 MHz, 12.0",
+    "image": "lmsysorg/sglang:qwen38-27b",
+    "model_path": "/tmp/Qwen3.8-27B-FP8",
+    "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]"
+  },
+  "finished_unix": 1786767170.080419,
+  "long_context": {
+    "local_input_tokens": 262080,
+    "passed": true,
+    "request": {
+      "error": null,
+      "latency_s": 105.60231079510413,
+      "ok": true,
+      "output_tokens": 8,
+      "text": "Blackwell inference benchmark context with deterministic words",
+      "ttft_s": 105.51058917702176
+    },
+    "target_input_tokens": 262080
+  },
+  "runtime_s": 2250.128262761049,
+  "schema_version": 1,
+  "selected": {
+    "latency": "flashinfer_cutlass_mtp_s2_decode_p1",
+    "throughput": "flashinfer_cutlass_mtp_s3_decode_p1"
+  },
+  "soak": [
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.88312268189058,
+        "median_latency_s": 3.900327786919661,
+        "median_ttft_ms": 130.41949062608182,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1035.797260036722,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 139.18730241712183,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.9088836358860135,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1329.1659271831159
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.7990431355949,
+        "median_latency_s": 3.9888682634336874,
+        "median_ttft_ms": 138.9783649938181,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.6387555943213,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 154.60951123386621,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.979437709087506,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1352.312471800018
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 66.87241830214228,
+        "median_latency_s": 3.990363091463223,
+        "median_ttft_ms": 154.9915069481358,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1022.2417101634921,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 193.93966835923493,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.013760266825557,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1375.56699940213
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 66.17613901881086,
+        "median_latency_s": 4.015649841050617,
+        "median_ttft_ms": 141.11590653192252,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1014.2448778971324,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.90564060863107,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.076944906031713,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1398.8500276650302
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.83255791053386,
+        "median_latency_s": 3.9845884995302185,
+        "median_ttft_ms": 135.2362404577434,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1027.7129297439199,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.29989203810692,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.971097534056753,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1422.2141891110223
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 66.20406938644135,
+        "median_latency_s": 4.015104862046428,
+        "median_ttft_ms": 140.06753999274224,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1015.1925342294018,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.9297191388905,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.069405284011737,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1445.4507571870927
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 66.19407622316106,
+        "median_latency_s": 4.012470106128603,
+        "median_ttft_ms": 136.81971095502377,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1015.6743809870777,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 147.07194555085152,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.0655770720914,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1468.855639328016
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.06730872178179,
+        "median_latency_s": 3.9202130899066105,
+        "median_ttft_ms": 140.44603414367884,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1029.3505143018012,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 151.4317623572424,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.95841638604179,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1492.2126033329405
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.2920124393874,
+        "median_latency_s": 3.939472418394871,
+        "median_ttft_ms": 137.48105498962104,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1036.9192731428539,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 151.3580988626927,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.9003257169388235,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1515.4408297049813
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 69.09201208981345,
+        "median_latency_s": 3.8666178811108693,
+        "median_ttft_ms": 151.10900101717561,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1033.6746439782562,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 165.62787457369268,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.925124261993915,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1538.6878900651354
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.30589549819055,
+        "median_latency_s": 3.9388070249697194,
+        "median_ttft_ms": 138.2965169614181,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1037.1431527914074,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.4172721169889,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.89862033794634,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1561.8883970729075
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.62123925235,
+        "median_latency_s": 3.9342065419768915,
+        "median_ttft_ms": 137.5929694622755,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1020.6083093438385,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.51584318187088,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.026585640152916,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1585.105033195112
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.82360667466637,
+        "median_latency_s": 3.988336681504734,
+        "median_ttft_ms": 135.588230448775,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.6891086033058,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.74297462031245,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.979046365013346,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1608.411803319119
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.31245887381161,
+        "median_latency_s": 3.93759720295202,
+        "median_ttft_ms": 137.44561152998358,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1036.8152544031614,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 150.31442674808204,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.90111831901595,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1631.6814825709444
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.81273957822043,
+        "median_latency_s": 3.9902218524366617,
+        "median_ttft_ms": 134.69630701001734,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.1926846361996,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 151.0055870283395,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.982906254008412,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1654.860778059112
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.78470024736123,
+        "median_latency_s": 3.989681255654432,
+        "median_ttft_ms": 133.95269552711397,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.441742196973,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.0316912299022,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.9809692681301385,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1678.1211109410506
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.78248421589447,
+        "median_latency_s": 3.990421999595128,
+        "median_ttft_ms": 137.9979969933629,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.2210126621378,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 151.6393269179389,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.982685892144218,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1701.3732905299403
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.82254191284221,
+        "median_latency_s": 3.9877533896360546,
+        "median_ttft_ms": 133.81129107438028,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.9270204298425,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.79713179636747,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.977197831030935,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1724.6301317049656
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.60645634051423,
+        "median_latency_s": 3.935741061461158,
+        "median_ttft_ms": 137.85862643271685,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1020.4573403730479,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 150.64679707866162,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.027773112989962,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1747.8846804890782
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.74135103380812,
+        "median_latency_s": 3.9261784855043516,
+        "median_ttft_ms": 135.64198708627373,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1022.2268672669697,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 147.86415584385395,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.013876627897844,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1771.1876091260929
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.78229044593458,
+        "median_latency_s": 3.9888221306027845,
+        "median_ttft_ms": 135.32462052535266,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.7205764616165,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 150.81481349188834,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.978801816003397,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1794.4814566939604
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.64471879953037,
+        "median_latency_s": 3.932262650458142,
+        "median_ttft_ms": 135.94624947290868,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1021.1604148178574,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.74757707677782,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.022245947970077,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1817.7354830570985
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.69765191057388,
+        "median_latency_s": 3.9296717250254005,
+        "median_ttft_ms": 138.29373894259334,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1021.1064675005836,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 150.7537161698565,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.022669780999422,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1841.029772229027
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.82506127580031,
+        "median_latency_s": 3.989324538386427,
+        "median_ttft_ms": 134.72928805276752,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.5246580907833,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.8278756160289,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.980324618052691,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1864.3248132129665
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.81985315724079,
+        "median_latency_s": 3.988131329533644,
+        "median_ttft_ms": 135.68875938653946,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.8026699644818,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 148.3157464535907,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.978163905907422,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1887.583398544928
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 70.10369789255569,
+        "median_latency_s": 3.7875526435673237,
+        "median_ttft_ms": 136.52425911277533,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1023.007396143806,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 152.2290720138699,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.007762241875753,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1910.829163768096
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.81795667187698,
+        "median_latency_s": 3.98903744854033,
+        "median_ttft_ms": 136.14341896027327,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.5366046792628,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 150.6512074964121,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.980231744935736,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1934.1158794709481
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.75803962283786,
+        "median_latency_s": 3.986941550509073,
+        "median_ttft_ms": 134.64267796371132,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1027.1467269098978,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 148.2977369101718,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.975491510005668,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1957.3612453490496
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.8203581418791,
+        "median_latency_s": 3.9889045355375856,
+        "median_ttft_ms": 136.8636490078643,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.5187306480834,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 150.20902066025883,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.980370698962361,
+        "warmup_ok": true
+      },
+      "elapsed_s": 1980.6158799049444
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.82648323048717,
+        "median_latency_s": 3.9875780339352787,
+        "median_ttft_ms": 133.78083892166615,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.968182600605,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 148.08683437295258,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.9768780949525535,
+        "warmup_ok": true
+      },
+      "elapsed_s": 2003.8682173411362
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.82637660652931,
+        "median_latency_s": 3.989137440454215,
+        "median_ttft_ms": 136.13094098400325,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.4464729596689,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 151.84549847617745,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.980932484846562,
+        "warmup_ok": true
+      },
+      "elapsed_s": 2027.2374978109729
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.82234124979547,
+        "median_latency_s": 3.9870208350475878,
+        "median_ttft_ms": 134.41322650760412,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1027.0133698116335,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 147.40373962558806,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.976527123013511,
+        "warmup_ok": true
+      },
+      "elapsed_s": 2050.4878849571105
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.82306123142894,
+        "median_latency_s": 3.9905184890376404,
+        "median_ttft_ms": 138.82035401184112,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.1544226275973,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 151.19588950183243,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.983203910989687,
+        "warmup_ok": true
+      },
+      "elapsed_s": 2073.756983832922
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.84331970396215,
+        "median_latency_s": 3.9859445655019954,
+        "median_ttft_ms": 133.74093489255756,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1027.3338417735117,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.19203931931406,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.97403888287954,
+        "warmup_ok": true
+      },
+      "elapsed_s": 2097.0254369620234
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.32939762626103,
+        "median_latency_s": 3.937950121355243,
+        "median_ttft_ms": 138.3939340012148,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1036.8592094148507,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 152.73919822648168,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.900783371180296,
+        "warmup_ok": true
+      },
+      "elapsed_s": 2120.2806224850938
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 66.11381305572024,
+        "median_latency_s": 4.020623277057894,
+        "median_ttft_ms": 140.4925015522167,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1014.2538549385356,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 150.79151957761496,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.076873417943716,
+        "warmup_ok": true
+      },
+      "elapsed_s": 2143.460749157006
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.80145283662421,
+        "median_latency_s": 3.9880432065110654,
+        "median_ttft_ms": 135.6427320279181,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.7716690945717,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.7960870154202,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.978404787136242,
+        "warmup_ok": true
+      },
+      "elapsed_s": 2166.8097119699232
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 67.63455804232709,
+        "median_latency_s": 3.931061653420329,
+        "median_ttft_ms": 135.84470748901367,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1021.662035356337,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 146.98061316739768,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 8.018307147081941,
+        "warmup_ok": true
+      },
+      "elapsed_s": 2190.0614293660037
+    },
+    {
+      "benchmark": {
+        "concurrency": 16,
+        "errors": [],
+        "failed": 0,
+        "input_tokens_measured": 524,
+        "input_tokens_requested": 512,
+        "median_decode_tokens_per_s": 65.84138251797484,
+        "median_latency_s": 3.9880963769974187,
+        "median_ttft_ms": 134.4118710840121,
+        "output_tokens": 8192,
+        "output_tokens_per_s": 1026.7569448187726,
+        "output_tokens_requested": 256,
+        "p90_ttft_ms": 149.82859243173152,
+        "requests": 32,
+        "successful": 32,
+        "wall_s": 7.9785192019771785,
+        "warmup_ok": true
+      },
+      "elapsed_s": 2213.352668629959
+    }
+  ],
+  "started_unix": 1786764919.9521604,
+  "winner_restart_s": 50.00717049790546
+}

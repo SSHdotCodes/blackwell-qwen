@@ -34,6 +34,15 @@ reproduced the finalist rates within 0.1%.
 The selected depth-3 profile passed a request with **262,080 measured input tokens plus 8 output
 tokens**. Near-limit TTFT was 105.08 seconds. BF16 KV and FP32 GDN state were retained.
 
+Spec V2 with decode-mode speculative attention was also measured: depth 3 was unchanged within
+noise and depth-2 batch throughput regressed. Using 64-token KV pages reduced performance at both
+depths. Those settings remain reproducible candidates but are not enabled in the defaults.
+
+The retained finalist and advanced validation runs completed 63 soak cycles with zero failed
+requests. Their concurrency-16 output throughput stayed between 1,002.9 and 1,037.1 tok/s. Jobs
+ran sequentially on one GPU; cumulative hard caps stayed below three GPU-hours ($8.25 at the
+documented $2.75/hour rate, and below the requested $10 ceiling).
+
 ### DSpark / DFlash-family result
 
 The trained 1.36B DSpark checkpoint was tested, not assumed. Its best 1K-stress result was
