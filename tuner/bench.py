@@ -100,9 +100,10 @@ def quality_answer_correct(case: int, text: str) -> bool:
             and compact.count("binarysearch(") == 1
         )
     if case == 11:
-        return _contains_all(lowered, ("1024", "1000")) and any(
-            phrase in lowered for phrase in ("2^10 is larger", "2^{10} is larger", "1024 is larger")
+        identifies_winner = bool(re.search(r"1024\s*>\s*1000", lowered)) or (
+            "larger" in lowered and ("2^10" in lowered or "2^{10}" in lowered)
         )
+        return _contains_all(lowered, ("1024", "1000")) and identifies_winner
     raise IndexError(case)
 
 
