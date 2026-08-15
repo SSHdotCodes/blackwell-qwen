@@ -1,0 +1,20 @@
+services:
+  qwen:
+    build: .
+    ipc: host
+    ports:
+      - "8000:8000"
+    environment:
+      PROFILE: ${PROFILE:-throughput}
+      MODEL_PATH: /model
+      HF_TOKEN: ${HF_TOKEN:-}
+    volumes:
+      - ${MODEL_DIR:-./model}:/model:ro
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
