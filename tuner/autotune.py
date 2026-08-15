@@ -133,6 +133,8 @@ def select_candidates(candidate_set: str, draft_model_path: str | None) -> list[
         chosen = [BASELINE, *MTP_CANDIDATES]
     elif candidate_set == "mtp_depth":
         chosen = [BASELINE, *MTP_DEPTH_CANDIDATES]
+    elif candidate_set == "finalists":
+        chosen = [BASELINE, *MTP_DEPTH_CANDIDATES[:2]]
     elif candidate_set == "dspark":
         chosen = [BASELINE, *DSPARK_CANDIDATES]
     else:
@@ -444,7 +446,9 @@ def main() -> int:
     parser.add_argument("--output", default="/results/latest")
     parser.add_argument("--budget-seconds", type=int, default=10620)
     parser.add_argument(
-        "--candidate-set", choices=("all", "mtp", "mtp_depth", "dspark"), default="all"
+        "--candidate-set",
+        choices=("all", "mtp", "mtp_depth", "finalists", "dspark"),
+        default="all",
     )
     parser.add_argument("--draft-model-path")
     args = parser.parse_args()

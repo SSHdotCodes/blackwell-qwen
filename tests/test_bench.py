@@ -1,4 +1,4 @@
-from tuner.bench import compare_quality, percentile, quality_answer_correct
+from tuner.bench import compare_quality, encoded_token_count, percentile, quality_answer_correct
 
 
 def test_percentile_interpolates() -> None:
@@ -22,3 +22,9 @@ def test_semantic_quality_examples() -> None:
     assert quality_answer_correct(2, "No glib can be a flan because every glib is a trob.")
     assert quality_answer_correct(4, "TCP is reliable and ordered; UDP reduces latency.")
     assert quality_answer_correct(11, "2^10 is larger: 1024 versus 1000.")
+
+
+def test_encoded_token_count_handles_tokenizer_containers() -> None:
+    assert encoded_token_count([1, 2, 3]) == 3
+    assert encoded_token_count({"input_ids": [1, 2, 3, 4]}) == 4
+    assert encoded_token_count({"input_ids": [[1, 2, 3]]}) == 3

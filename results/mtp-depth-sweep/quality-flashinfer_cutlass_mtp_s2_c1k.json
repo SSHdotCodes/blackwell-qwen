@@ -1,0 +1,126 @@
+{
+  "all_correct": true,
+  "all_ok": true,
+  "rows": [
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 0.6981856159400195,
+      "ok": true,
+      "output_tokens": 5,
+      "prompt": "What is 37 * 43? Reply with only the number.",
+      "text": "1591",
+      "ttft_s": 0.6981851879972965
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 2.288615092053078,
+      "ok": true,
+      "output_tokens": 214,
+      "prompt": "Write a Python function that returns the nth Fibonacci number iteratively.",
+      "text": "```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number iteratively.\n    \n    The Fibonacci sequence is defined as:\n    F(0) = 0\n    F(1) = 1\n    F(n) = F(n-1) + F(n-2) for n >= 2\n    \n    Args:\n        n: A non-negative integer representing the position in the Fibonacci sequence.\n        \n    Returns:\n        The nth Fibonacci number.\n        \n    Raises:\n        ValueError: If n is negative.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    \n    prev, curr = 0, 1\n    for _ in range(2, n + 1):\n        prev, curr = curr, prev + curr\n    \n    return curr\n```",
+      "ttft_s": 2.288614685065113
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 1.0321396769722924,
+      "ok": true,
+      "output_tokens": 85,
+      "prompt": "If all glibs are trobs and no trob is a flan, can any glib be a flan? Explain briefly.",
+      "text": "No, no glib can be a flan.\n\n**Explanation:**\n1.  Since **all glibs are trobs**, any specific glib is necessarily a trob.\n2.  Since **no trob is a flan**, any specific trob cannot be a flan.\n3.  Therefore, by logical transitivity, any glib (being a trob) cannot be a flan.",
+      "ttft_s": 1.032139276037924
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 2.4436343129491434,
+      "ok": true,
+      "output_tokens": 233,
+      "prompt": "A train travels 120 km in 90 minutes. What is its average speed in km/h?",
+      "text": "To find the average speed in km/h, we need to ensure the units for distance and time are consistent.\n\n**1. Identify the given values:**\n*   Distance ($d$) = $120$ km\n*   Time ($t$) = $90$ minutes\n\n**2. Convert time to hours:**\nSince the desired speed unit is km/h, we must convert the time from minutes to hours.\n$$ t = \\frac{90 \\text{ minutes}}{60 \\text{ minutes/hour}} = 1.5 \\text{ hours} $$\n\n**3. Calculate the average speed:**\nThe formula for average speed is:\n$$ \\text{Speed} = \\frac{\\text{Distance}}{\\text{Time}} $$\n\nSubstitute the values:\n$$ \\text{Speed} = \\frac{120 \\text{ km}}{1.5 \\text{ h}} $$\n\n$$ \\text{Speed} = 80 \\text{ km/h} $$\n\n**Conclusion:**\nThe train's average speed is **80 km/h**.",
+      "ttft_s": 2.4436339419335127
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 0.9668700670590624,
+      "ok": true,
+      "output_tokens": 73,
+      "prompt": "Summarize the difference between TCP and UDP in two sentences.",
+      "text": "TCP is a connection-oriented protocol that ensures reliable, ordered delivery of data through handshakes and acknowledgments, making it ideal for applications like web browsing and email. In contrast, UDP is a connectionless protocol that prioritizes speed and low latency by sending data without establishing a connection or guaranteeing delivery, which suits real-time applications like video streaming and gaming.",
+      "ttft_s": 0.9668697230517864
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 0.45036716596223414,
+      "ok": true,
+      "output_tokens": 40,
+      "prompt": "Return valid JSON with keys name and primes, where primes contains the first five primes.",
+      "text": "```json\n{\n  \"name\": \"primes\",\n  \"primes\": [2, 3, 5, 7, 11]\n}\n```",
+      "ttft_s": 0.45036687795072794
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 0.33264949999284,
+      "ok": true,
+      "output_tokens": 28,
+      "prompt": "Solve 3x + 7 = 31. Reply with x and one verification step.",
+      "text": "x = 8\n\nVerification: $3(8) + 7 = 24 + 7 = 31$",
+      "ttft_s": 0.33264931000303477
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 0.13293366704601794,
+      "ok": true,
+      "output_tokens": 7,
+      "prompt": "Translate 'The weather is pleasant today' into French.",
+      "text": "Il fait beau aujourd'hui.",
+      "ttft_s": 0.13293349195737392
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 2.356364796985872,
+      "ok": true,
+      "output_tokens": 215,
+      "prompt": "Name the planet with the shortest year and state its orbital period approximately.",
+      "text": "The planet with the shortest year is **Mercury**.\n\n### Reasoning:\n1.  **Orbital Mechanics**: According to Kepler's Third Law of Planetary Motion, the square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. This means that planets closer to the Sun have shorter orbital periods (shorter years).\n2.  **Proximity to the Sun**: Mercury is the closest planet to the Sun in our solar system.\n3.  **Comparison**:\n    *   Mercury: ~88 Earth days\n    *   Venus: ~225 Earth days\n    *   Earth: ~365.25 Earth days\n    *   (Outer planets have significantly longer years, ranging from several years to over 160 years for Neptune).\n\n### Conclusion:\n*   **Planet**: Mercury\n*   **Approximate Orbital Period**: **88 Earth days** (specifically, about 87.97 Earth days).",
+      "ttft_s": 2.3563645880203694
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 0.9661088419379666,
+      "ok": true,
+      "output_tokens": 86,
+      "prompt": "Give one counterexample to the claim that every odd number is prime.",
+      "text": "A simple counterexample is **9**.\n\n**Reasoning:**\n1.  **9 is an odd number**: It is not divisible by 2.\n2.  **9 is not a prime number**: It has divisors other than 1 and itself (specifically, $3 \\times 3 = 9$).\n\nTherefore, the claim that \"every odd number is prime\" is false.",
+      "ttft_s": 0.9661087009590119
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 1.2809480789583176,
+      "ok": true,
+      "output_tokens": 124,
+      "prompt": "Implement binary search in JavaScript without recursion.",
+      "text": "```javascript\nfunction binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        } else {\n            right = mid - 1;\n        }\n    }\n\n    return -1;\n}\n```",
+      "ttft_s": 1.280947936931625
+    },
+    {
+      "correct": true,
+      "error": null,
+      "latency_s": 1.9115016540745273,
+      "ok": true,
+      "output_tokens": 189,
+      "prompt": "Which is larger: 2^10 or 10^3? Reply with both values.",
+      "text": "To determine which is larger, we calculate the value of each expression:\n\n1.  **Calculate $2^{10}$:**\n    $$2^{10} = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 1024$$\n\n2.  **Calculate $10^3$:**\n    $$10^3 = 10 \\times 10 \\times 10 = 1000$$\n\n**Comparison:**\n$$1024 > 1000$$\n\n**Conclusion:**\n$2^{10}$ is larger.\n\n**Values:**\n*   $2^{10} = 1024$\n*   $10^3 = 1000$",
+      "ttft_s": 1.9115014780545607
+    }
+  ]
+}

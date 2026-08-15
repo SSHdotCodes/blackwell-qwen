@@ -7,6 +7,7 @@ import math
 import re
 import statistics
 import time
+from collections.abc import Mapping
 from dataclasses import asdict, dataclass
 from typing import Any, Iterable
 from urllib.parse import urlsplit
@@ -318,6 +319,17 @@ def make_prompt(target_tokens: int, tokenizer: Any) -> str:
     return tokenizer.decode(ids[:target_tokens], skip_special_tokens=True)
 
 
+def encoded_token_count(encoded: Any) -> int:
+    if isinstance(encoded, Mapping):
+        encoded = encoded["input_ids"]
+    shape = getattr(encoded, "shape", None)
+    if shape is not None:
+        return int(shape[-1])
+    if encoded and isinstance(encoded[0], list):
+        return len(encoded[0])
+    return len(encoded)
+
+
 def run_concurrent(
     base_url: str,
     model: str,
@@ -331,7 +343,7 @@ def run_concurrent(
     enable_thinking: bool = False,
 ) -> dict[str, Any]:
     prompt = prompt or make_prompt(input_tokens, tokenizer)
-    measured_input_tokens = len(
+    measured_input_tokens = encoded_token_count(
         tokenizer.apply_chat_template(
             [{"role": "user", "content": prompt}],
             tokenize=True,
@@ -400,7 +412,7 @@ def make_long_context_prompt(tokenizer: Any, total_input_tokens: int = 262080) -
     empty = tokenizer.apply_chat_template(
         messages, tokenize=True, add_generation_prompt=True, enable_thinking=False
     )
-    content_target = max(1, total_input_tokens - len(empty))
+    content_target = max(1, total_input_tokens - encoded_token_count(empty))
     content = make_prompt(content_target, tokenizer)
     for _ in range(4):
         full = tokenizer.apply_chat_template(
@@ -409,9 +421,10 @@ def make_long_context_prompt(tokenizer: Any, total_input_tokens: int = 262080) -
             add_generation_prompt=True,
             enable_thinking=False,
         )
-        difference = len(full) - total_input_tokens
+        measured = encoded_token_count(full)
+        difference = measured - total_input_tokens
         if abs(difference) <= 2:
-            return content, len(full)
+            return content, measured
         content_ids = tokenizer.encode(content, add_special_tokens=False)
         new_length = max(1, len(content_ids) - difference)
         content = tokenizer.decode(content_ids[:new_length], skip_special_tokens=True)
@@ -421,7 +434,7 @@ def make_long_context_prompt(tokenizer: Any, total_input_tokens: int = 262080) -
         add_generation_prompt=True,
         enable_thinking=False,
     )
-    return content, len(full)
+    return content, encoded_token_count(full)
 
 
 def run_long_context(
