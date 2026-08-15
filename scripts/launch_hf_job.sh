@@ -4,6 +4,8 @@ set -euo pipefail
 NAMESPACE="${HF_NAMESPACE:-ProCreations}"
 BUCKET="${HF_RESULTS_BUCKET:-blackwell-qwen}"
 IMAGE="${SGLANG_IMAGE:-lmsysorg/sglang:qwen38-27b}"
+JOB_TIMEOUT="${HF_JOB_TIMEOUT:-3h}"
+JOB_BUDGET="${JOB_BUDGET_SECONDS:-10620}"
 
 if hf jobs ps --format json | python3 -c 'import json,sys; raise SystemExit(0 if not json.load(sys.stdin) else 1)'; then
   :
@@ -18,10 +20,10 @@ hf buckets create "${NAMESPACE}/${BUCKET}" --private --exist-ok >/dev/null
 hf jobs run \
   --detach \
   --flavor rtx-pro-6000 \
-  --timeout 3h \
+  --timeout "${JOB_TIMEOUT}" \
   --label project=blackwell-qwen \
   --label model=qwen38-27b-fp8 \
-  --env JOB_BUDGET_SECONDS=10620 \
+  --env "JOB_BUDGET_SECONDS=${JOB_BUDGET}" \
   --volume hf://Qwen/Qwen3.8-27B-FP8:/model:ro \
   --volume "hf://buckets/${NAMESPACE}/${BUCKET}:/results" \
   -- \

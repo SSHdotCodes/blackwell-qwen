@@ -73,7 +73,8 @@ hf auth login
 bash scripts/launch_hf_job.sh
 ```
 
-The job mounts the public model repository directly, avoiding a paid download phase. It benchmarks
+The job mounts the public model repository and stages it once onto local NVMe, avoiding repeated
+downloads and network-filesystem faults during concurrent safetensors reads. It benchmarks
 eight kernel configurations, rejects candidates that fail exact quality parity, tests the selected
 stack at 262K context, then spends the remaining rental on a sustained thermal/stability soak.
 
