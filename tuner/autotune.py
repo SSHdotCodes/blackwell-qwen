@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import shutil
 import signal
@@ -20,7 +21,6 @@ from tuner.bench import (
     run_long_context,
     run_quality,
 )
-
 
 MODEL_NAME = "Qwen/Qwen3.8-27B-FP8"
 PORT = 30000
@@ -330,7 +330,7 @@ def candidate_benchmarks(tokenizer: Any) -> dict[str, Any]:
 def safe_number(value: Any, default: float) -> float:
     try:
         number = float(value)
-        return number if number == number else default
+        return number if not math.isnan(number) else default
     except (TypeError, ValueError):
         return default
 
@@ -486,9 +486,10 @@ def main() -> int:
     args = parser.parse_args()
 
     candidates = select_candidates(args.candidate_set, args.draft_model_path)
-    if any(candidate.speculative_algorithm == "DSPARK" for candidate in candidates):
-        if not args.draft_model_path:
-            parser.error("--draft-model-path is required for a candidate set containing DSPARK")
+    if any(
+        candidate.speculative_algorithm == "DSPARK" for candidate in candidates
+    ) and not args.draft_model_path:
+        parser.error("--draft-model-path is required for a candidate set containing DSPARK")
 
     output_dir = Path(args.output)
     output_dir.mkdir(parents=True, exist_ok=True)

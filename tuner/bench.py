@@ -7,11 +7,10 @@ import math
 import re
 import statistics
 import time
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from dataclasses import asdict, dataclass
-from typing import Any, Iterable
+from typing import Any
 from urllib.parse import urlsplit
-
 
 QUALITY_PROMPTS = [
     "What is 37 * 43? Reply with only the number.",
