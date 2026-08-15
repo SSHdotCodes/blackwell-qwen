@@ -109,9 +109,11 @@ The measured axes are:
 - Auto, CUTLASS, Triton, and FlashInfer TRT-LLM block-FP8 GEMM runners.
 - 1K, 2K, 4K, and 8K chunked prefill.
 - Native EAGLE/MTP with 3 steps, top-k 1, and 4 draft tokens.
+- A focused native-MTP depth sweep from 2 through 7 verification steps.
 - Target-specific DSpark/DFlash-family decoding with a trained 7-token draft block.
 - A non-speculative, checkpoint-precision reference baseline.
-- Batch-1 streaming TTFT/decode rate and aggregate concurrency-16/32 output throughput.
+- Batch-1 streaming TTFT/decode rate on both a 1K synthetic stress prompt and a natural
+  long-form response, plus aggregate concurrency-16/32 output throughput.
 
 ## License
 

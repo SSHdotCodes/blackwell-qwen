@@ -27,6 +27,14 @@ QUALITY_PROMPTS = [
     "Which is larger: 2^10 or 10^3? Reply with both values.",
 ]
 
+REALISTIC_SPEED_PROMPT = """
+Write a detailed technical design for a production API gateway used by AI agents. Cover request
+authentication, tenant isolation, streaming responses, retries, idempotency, rate limiting,
+observability, overload control, failure recovery, deployment, and testing. Include a concise
+Python example for the core async request path, explain the important tradeoffs, and end with an
+operational checklist. Make the answer at least 900 words, concrete, and internally consistent.
+""".strip()
+
 
 def _contains_all(text: str, words: tuple[str, ...]) -> bool:
     lowered = text.lower()
@@ -319,8 +327,18 @@ def run_concurrent(
     output_tokens: int,
     concurrency: int,
     requests: int,
+    prompt: str | None = None,
+    enable_thinking: bool = False,
 ) -> dict[str, Any]:
-    prompt = make_prompt(input_tokens, tokenizer)
+    prompt = prompt or make_prompt(input_tokens, tokenizer)
+    measured_input_tokens = len(
+        tokenizer.apply_chat_template(
+            [{"role": "user", "content": prompt}],
+            tokenize=True,
+            add_generation_prompt=True,
+            enable_thinking=enable_thinking,
+        )
+    )
     # A warm request keeps graph capture and one-time tokenizer work out of the measurement.
     warm = chat_request(
         base_url,
@@ -329,6 +347,7 @@ def run_concurrent(
         min(16, output_tokens),
         stream=True,
         ignore_eos=True,
+        enable_thinking=enable_thinking,
     )
     started = time.perf_counter()
     with concurrent.futures.ThreadPoolExecutor(max_workers=concurrency) as pool:
@@ -341,6 +360,7 @@ def run_concurrent(
                 output_tokens,
                 stream=True,
                 ignore_eos=True,
+                enable_thinking=enable_thinking,
             )
             for _ in range(requests)
         ]
@@ -357,6 +377,7 @@ def run_concurrent(
     ]
     return {
         "input_tokens_requested": input_tokens,
+        "input_tokens_measured": measured_input_tokens,
         "output_tokens_requested": output_tokens,
         "concurrency": concurrency,
         "requests": requests,
