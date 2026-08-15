@@ -8,5 +8,6 @@ telemetry, quality gates, and machine-readable benchmark output are retained her
 - `dspark-sweep`: trained DSpark/DFlash-family draft sweep.
 - `mtp-depth-sweep`: native MTP verification depths 2 through 7.
 - `final-validated`: clean finalist reproduction, exact 262,080-token proof, and stability soak.
+- `advanced-partial`: decode-mode/Spec-V2 comparison before the short-job guard was adjusted.
 
 `config/selected_profiles.env` contains the fastest quality-safe, full-context profiles.

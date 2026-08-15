@@ -476,6 +476,7 @@ def main() -> int:
     parser.add_argument("--model-path", default="/model")
     parser.add_argument("--output", default="/results/latest")
     parser.add_argument("--budget-seconds", type=int, default=10620)
+    parser.add_argument("--min-candidate-seconds", type=int, default=600)
     parser.add_argument(
         "--candidate-set",
         choices=("all", "mtp", "mtp_depth", "finalists", "advanced", "dspark"),
@@ -516,7 +517,7 @@ def main() -> int:
 
     try:
         for candidate in candidates:
-            if deadline - time.monotonic() < 2400:
+            if deadline - time.monotonic() < args.min_candidate_seconds:
                 results["candidates"][candidate.name] = {
                     "candidate": asdict(candidate),
                     "status": "skipped_deadline",
