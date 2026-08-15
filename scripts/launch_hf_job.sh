@@ -6,6 +6,8 @@ BUCKET="${HF_RESULTS_BUCKET:-blackwell-qwen}"
 IMAGE="${SGLANG_IMAGE:-lmsysorg/sglang:qwen38-27b}"
 JOB_TIMEOUT="${HF_JOB_TIMEOUT:-3h}"
 JOB_BUDGET="${JOB_BUDGET_SECONDS:-10620}"
+CANDIDATE_SET="${CANDIDATE_SET:-all}"
+RESULT_RUN="${RESULT_RUN:-latest}"
 
 if hf jobs ps --format json | python3 -c 'import json,sys; raise SystemExit(0 if not json.load(sys.stdin) else 1)'; then
   :
@@ -24,7 +26,10 @@ hf jobs run \
   --label project=blackwell-qwen \
   --label model=qwen38-27b-fp8 \
   --env "JOB_BUDGET_SECONDS=${JOB_BUDGET}" \
+  --env "CANDIDATE_SET=${CANDIDATE_SET}" \
+  --env "RESULT_RUN=${RESULT_RUN}" \
   --volume hf://Qwen/Qwen3.8-27B-FP8:/model:ro \
+  --volume hf://RadixArk/Qwen3.8-27B-DSpark:/draft:ro \
   --volume "hf://buckets/${NAMESPACE}/${BUCKET}:/results" \
   -- \
   "${IMAGE}" \

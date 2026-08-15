@@ -1,0 +1,113 @@
+{
+  "all_ok": true,
+  "rows": [
+    {
+      "error": null,
+      "latency_s": 0.14550355286337435,
+      "ok": true,
+      "output_tokens": 5,
+      "prompt": "What is 37 * 43? Reply with only the number.",
+      "text": "1591",
+      "ttft_s": 0.14550321595743299
+    },
+    {
+      "error": null,
+      "latency_s": 0.8820751239545643,
+      "ok": true,
+      "output_tokens": 96,
+      "prompt": "Write a Python function that returns the nth Fibonacci number iteratively.",
+      "text": "```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Return the nth Fibonacci number iteratively.\n    \n    The Fibonacci sequence is defined as:\n    F(0) = 0\n    F(1) = 1\n    F(n) = F(n-1) + F(n-2) for n >= 2\n    \n    Args:\n        n: A non-negative integer representing the position in the Fibonacci sequence.\n",
+      "ttft_s": 0.8820747940335423
+    },
+    {
+      "error": null,
+      "latency_s": 0.977485029026866,
+      "ok": true,
+      "output_tokens": 85,
+      "prompt": "If all glibs are trobs and no trob is a flan, can any glib be a flan? Explain briefly.",
+      "text": "No, no glib can be a flan.\n\n**Explanation:**\n1.  Since **all glibs are trobs**, any specific glib is necessarily a trob.\n2.  Since **no trob is a flan**, any specific trob cannot be a flan.\n3.  Therefore, by logical transitivity, any glib (being a trob) cannot be a flan.",
+      "ttft_s": 0.9774848110973835
+    },
+    {
+      "error": null,
+      "latency_s": 0.9714036819059402,
+      "ok": true,
+      "output_tokens": 96,
+      "prompt": "A train travels 120 km in 90 minutes. What is its average speed in km/h?",
+      "text": "To find the average speed in km/h, we need to ensure the units for distance and time are consistent.\n\n**1. Identify the given values:**\n*   Distance ($d$) = $120$ km\n*   Time ($t$) = $90$ minutes\n\n**2. Convert time to hours:**\nSince the desired speed unit is km/h, we must convert the time from minutes to hours.\n$$ t = \\frac{",
+      "ttft_s": 0.9714034718926996
+    },
+    {
+      "error": null,
+      "latency_s": 0.8544310978613794,
+      "ok": true,
+      "output_tokens": 73,
+      "prompt": "Summarize the difference between TCP and UDP in two sentences.",
+      "text": "TCP is a connection-oriented protocol that ensures reliable, ordered delivery of data through handshakes and acknowledgments, making it ideal for applications like web browsing and email. In contrast, UDP is a connectionless protocol that prioritizes speed and low latency by sending data without establishing a connection or guaranteeing delivery, which suits real-time applications like video streaming and gaming.",
+      "ttft_s": 0.8544307530391961
+    },
+    {
+      "error": null,
+      "latency_s": 0.3900156719610095,
+      "ok": true,
+      "output_tokens": 40,
+      "prompt": "Return valid JSON with keys name and primes, where primes contains the first five primes.",
+      "text": "```json\n{\n  \"name\": \"primes\",\n  \"primes\": [2, 3, 5, 7, 11]\n}\n```",
+      "ttft_s": 0.39001537510193884
+    },
+    {
+      "error": null,
+      "latency_s": 0.2924489548895508,
+      "ok": true,
+      "output_tokens": 28,
+      "prompt": "Solve 3x + 7 = 31. Reply with x and one verification step.",
+      "text": "x = 8\n\nVerification: $3(8) + 7 = 24 + 7 = 31$",
+      "ttft_s": 0.29244872694835067
+    },
+    {
+      "error": null,
+      "latency_s": 0.14087105286307633,
+      "ok": true,
+      "output_tokens": 7,
+      "prompt": "Translate 'The weather is pleasant today' into French.",
+      "text": "Il fait beau aujourd'hui.",
+      "ttft_s": 0.14087092597037554
+    },
+    {
+      "error": null,
+      "latency_s": 0.9993152141105384,
+      "ok": true,
+      "output_tokens": 96,
+      "prompt": "Name the planet with the shortest year and state its orbital period approximately.",
+      "text": "The planet with the shortest year is **Mercury**.\n\n### Reasoning:\n1.  **Orbital Mechanics**: According to Kepler's Third Law of Planetary Motion, the square of the orbital period of a planet is directly proportional to the cube of the semi-major axis of its orbit. This means that planets closer to the Sun have shorter orbital periods (shorter years).\n2.  **Proximity to the Sun**: Mercury is the closest planet to the",
+      "ttft_s": 0.9993150162044913
+    },
+    {
+      "error": null,
+      "latency_s": 0.8460681268479675,
+      "ok": true,
+      "output_tokens": 86,
+      "prompt": "Give one counterexample to the claim that every odd number is prime.",
+      "text": "A simple counterexample is **9**.\n\n**Reasoning:**\n1.  **9 is an odd number**: It is not divisible by 2.\n2.  **9 is not a prime number**: It has divisors other than 1 and itself (specifically, $3 \\times 3 = 9$).\n\nTherefore, the claim that \"every odd number is prime\" is false.",
+      "ttft_s": 0.8460678849369287
+    },
+    {
+      "error": null,
+      "latency_s": 0.8482606299221516,
+      "ok": true,
+      "output_tokens": 96,
+      "prompt": "Implement binary search in JavaScript without recursion.",
+      "text": "```javascript\nfunction binarySearch(arr, target) {\n    let left = 0;\n    let right = arr.length - 1;\n\n    while (left <= right) {\n        const mid = Math.floor((left + right) / 2);\n\n        if (arr[mid] === target) {\n            return mid;\n        } else if (arr[mid] < target) {\n            left = mid + 1;\n        }",
+      "ttft_s": 0.8482603649608791
+    },
+    {
+      "error": null,
+      "latency_s": 0.8464303349610418,
+      "ok": true,
+      "output_tokens": 96,
+      "prompt": "Which is larger: 2^10 or 10^3? Reply with both values.",
+      "text": "To determine which is larger, we calculate the value of each expression:\n\n1.  **Calculate $2^{10}$:**\n    $$2^{10} = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 1024$$\n\n2.  **Calculate $10^3$:**\n   ",
+      "ttft_s": 0.8464300550986081
+    }
+  ]
+}

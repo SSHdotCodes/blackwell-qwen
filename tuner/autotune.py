@@ -8,7 +8,7 @@ import signal
 import subprocess
 import sys
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from pathlib import Path
 from typing import Any
 from urllib.request import urlopen
@@ -27,10 +27,15 @@ class Candidate:
     attention_backend: str
     fp8_gemm_backend: str
     chunked_prefill: int
-    speculative: bool
+    speculative_algorithm: str | None = None
+    draft_model_path: str | None = None
     cuda_graph_max_bs: int = 32
     mamba_ratio: float = 1.8
     max_running_requests: int = 32
+
+    @property
+    def speculative(self) -> bool:
+        return self.speculative_algorithm is not None
 
     def profile_flags(self) -> list[str]:
         flags = [
@@ -49,7 +54,7 @@ class Candidate:
             "--max-running-requests",
             str(self.max_running_requests),
         ]
-        if self.speculative:
+        if self.speculative_algorithm == "EAGLE":
             flags.extend(
                 [
                     "--speculative-algorithm",
@@ -62,21 +67,60 @@ class Candidate:
                     "4",
                 ]
             )
+        elif self.speculative_algorithm == "DSPARK":
+            if not self.draft_model_path:
+                raise ValueError("DSPARK requires a draft model path")
+            flags.extend(
+                [
+                    "--speculative-algorithm",
+                    "DSPARK",
+                    "--speculative-draft-model-path",
+                    self.draft_model_path,
+                    "--speculative-dspark-block-size",
+                    "7",
+                    "--speculative-draft-model-quantization",
+                    "unquant",
+                    "--mamba-scheduler-strategy",
+                    "extra_buffer",
+                ]
+            )
         return flags
 
 
-CANDIDATES = [
-    Candidate("flashinfer_auto_c2k", "flashinfer", "auto", 2048, False),
-    Candidate("flashinfer_cutlass_mtp_c1k", "flashinfer", "cutlass", 1024, True),
-    Candidate("flashinfer_cutlass_mtp_c2k", "flashinfer", "cutlass", 2048, True),
-    Candidate("flashinfer_cutlass_mtp_c4k", "flashinfer", "cutlass", 4096, True),
-    Candidate("flashinfer_cutlass_mtp_c8k", "flashinfer", "cutlass", 8192, True),
-    Candidate("flashinfer_triton_mtp_c2k", "flashinfer", "triton", 2048, True),
+BASELINE = Candidate("flashinfer_auto_c2k", "flashinfer", "auto", 2048)
+MTP_CANDIDATES = [
+    Candidate("flashinfer_cutlass_mtp_c1k", "flashinfer", "cutlass", 1024, "EAGLE"),
+    Candidate("flashinfer_cutlass_mtp_c2k", "flashinfer", "cutlass", 2048, "EAGLE"),
+    Candidate("flashinfer_cutlass_mtp_c4k", "flashinfer", "cutlass", 4096, "EAGLE"),
+    Candidate("flashinfer_cutlass_mtp_c8k", "flashinfer", "cutlass", 8192, "EAGLE"),
+    Candidate("flashinfer_triton_mtp_c2k", "flashinfer", "triton", 2048, "EAGLE"),
     Candidate(
-        "flashinfer_trtllm_mtp_c2k", "flashinfer", "flashinfer_trtllm", 2048, True
+        "flashinfer_trtllm_mtp_c2k", "flashinfer", "flashinfer_trtllm", 2048, "EAGLE"
     ),
-    Candidate("triton_cutlass_mtp_c2k", "triton", "cutlass", 2048, True),
+    Candidate("triton_cutlass_mtp_c2k", "triton", "cutlass", 2048, "EAGLE"),
 ]
+DSPARK_CANDIDATES = [
+    Candidate("flashinfer_cutlass_dspark_c1k", "flashinfer", "cutlass", 1024, "DSPARK"),
+    Candidate("flashinfer_cutlass_dspark_c2k", "flashinfer", "cutlass", 2048, "DSPARK"),
+    Candidate("flashinfer_cutlass_dspark_c4k", "flashinfer", "cutlass", 4096, "DSPARK"),
+    Candidate("flashinfer_auto_dspark_c2k", "flashinfer", "auto", 2048, "DSPARK"),
+    Candidate("fa3_cutlass_dspark_c2k", "fa3", "cutlass", 2048, "DSPARK"),
+]
+
+
+def select_candidates(candidate_set: str, draft_model_path: str | None) -> list[Candidate]:
+    if candidate_set == "mtp":
+        chosen = [BASELINE, *MTP_CANDIDATES]
+    elif candidate_set == "dspark":
+        chosen = [BASELINE, *DSPARK_CANDIDATES]
+    else:
+        chosen = [BASELINE, *DSPARK_CANDIDATES, *MTP_CANDIDATES]
+    return [
+        replace(candidate, draft_model_path=draft_model_path)
+        if candidate.speculative_algorithm == "DSPARK"
+        else candidate
+        for candidate in chosen
+    ]
 
 
 def atomic_json(path: Path, value: Any) -> None:
@@ -237,7 +281,8 @@ def pick_winners(results: dict[str, Any]) -> tuple[str, str]:
         eligible = {
             name: row
             for name, row in results["candidates"].items()
-            if row.get("status") == "completed" and not row["candidate"]["speculative"]
+            if row.get("status") == "completed"
+            and row["candidate"].get("speculative_algorithm") is None
         }
     if not eligible:
         raise RuntimeError("No serving candidate completed")
@@ -263,23 +308,34 @@ def shell_join(values: list[str]) -> str:
     return " ".join(shlex.quote(value) for value in values)
 
 
+def deployment_flags(candidate: Candidate) -> list[str]:
+    flags = candidate.profile_flags()
+    if candidate.draft_model_path:
+        flags = [
+            "__DRAFT_MODEL_PATH__" if value == candidate.draft_model_path else value
+            for value in flags
+        ]
+    return flags
+
+
 def write_selected_profiles(
     output_dir: Path,
     results: dict[str, Any],
     latency_name: str,
     throughput_name: str,
+    candidates: list[Candidate],
 ) -> None:
-    candidates = {candidate.name: candidate for candidate in CANDIDATES}
-    latency = candidates[latency_name]
-    throughput = candidates[throughput_name]
+    candidates_by_name = {candidate.name: candidate for candidate in candidates}
+    latency = candidates_by_name[latency_name]
+    throughput = candidates_by_name[throughput_name]
     latency_bench = results["candidates"][latency_name]["benchmarks"]["latency"]
     throughput_bench = results["candidates"][throughput_name]["benchmarks"]["throughput_c32"]
     contents = (
         "# Generated by the measured RTX PRO 6000 autotune run.\n"
         f"LATENCY_CANDIDATE={latency_name}\n"
-        f"LATENCY_FLAGS={json.dumps(shell_join(latency.profile_flags()))}\n"
+        f"LATENCY_FLAGS={json.dumps(shell_join(deployment_flags(latency)))}\n"
         f"THROUGHPUT_CANDIDATE={throughput_name}\n"
-        f"THROUGHPUT_FLAGS={json.dumps(shell_join(throughput.profile_flags()))}\n"
+        f"THROUGHPUT_FLAGS={json.dumps(shell_join(deployment_flags(throughput)))}\n"
         f"MEASURED_LATENCY_TTFT_MS={latency_bench['median_ttft_ms']:.3f}\n"
         f"MEASURED_LATENCY_DECODE_TPS={latency_bench['median_decode_tokens_per_s']:.3f}\n"
         f"MEASURED_THROUGHPUT_TPS={throughput_bench['output_tokens_per_s']:.3f}\n"
@@ -314,8 +370,9 @@ def write_summary(output_dir: Path, results: dict[str, Any]) -> None:
             f"`{throughput['benchmarks']['throughput_c32']['output_tokens_per_s']:.1f} tok/s`"
         ),
         (
-            "- Deterministic quality parity: "
-            f"`{throughput['quality']['exact_matches']}/{throughput['quality']['total']}` exact"
+            "- Task-level quality gate: "
+            f"`{throughput['quality']['correct_answers']}/{throughput['quality']['total']}` correct; "
+            f"`{throughput['quality']['exact_matches']}/{throughput['quality']['total']}` byte-exact"
         ),
         (
             "- Near-limit context request: "
@@ -348,7 +405,14 @@ def main() -> int:
     parser.add_argument("--model-path", default="/model")
     parser.add_argument("--output", default="/results/latest")
     parser.add_argument("--budget-seconds", type=int, default=10620)
+    parser.add_argument("--candidate-set", choices=("all", "mtp", "dspark"), default="all")
+    parser.add_argument("--draft-model-path")
     args = parser.parse_args()
+
+    candidates = select_candidates(args.candidate_set, args.draft_model_path)
+    if any(candidate.speculative_algorithm == "DSPARK" for candidate in candidates):
+        if not args.draft_model_path:
+            parser.error("--draft-model-path is required for a candidate set containing DSPARK")
 
     output_dir = Path(args.output)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -361,6 +425,8 @@ def main() -> int:
             "gpu": gpu_snapshot(),
             "image": os.environ.get("BLACKWELL_QWEN_IMAGE", "lmsysorg/sglang:qwen38-27b"),
             "model_path": args.model_path,
+            "draft_model_path": args.draft_model_path,
+            "candidate_set": args.candidate_set,
             "python": sys.version,
         },
         "candidates": {},
@@ -374,7 +440,7 @@ def main() -> int:
     reference_quality: dict[str, Any] | None = None
 
     try:
-        for candidate in CANDIDATES:
+        for candidate in candidates:
             if deadline - time.monotonic() < 2400:
                 results["candidates"][candidate.name] = {
                     "candidate": asdict(candidate),
@@ -395,7 +461,10 @@ def main() -> int:
                 if reference_quality is None and not candidate.speculative:
                     reference_quality = current_quality
                     quality = {
-                        "quality_safe": current_quality["all_ok"],
+                        "quality_safe": current_quality["all_correct"],
+                        "correct_answers": sum(
+                            row["correct"] for row in current_quality["rows"]
+                        ),
                         "exact_matches": len(current_quality["rows"]),
                         "total": len(current_quality["rows"]),
                         "reference": True,
@@ -420,11 +489,13 @@ def main() -> int:
 
         latency_name, throughput_name = pick_winners(results)
         results["selected"] = {"latency": latency_name, "throughput": throughput_name}
-        write_selected_profiles(output_dir, results, latency_name, throughput_name)
+        write_selected_profiles(
+            output_dir, results, latency_name, throughput_name, candidates
+        )
         atomic_json(output_dir / "results.json", results)
 
         # Prove the native 256K window on the selected high-throughput kernel stack.
-        winner = next(candidate for candidate in CANDIDATES if candidate.name == throughput_name)
+        winner = next(candidate for candidate in candidates if candidate.name == throughput_name)
         process = None
         log_handle = None
         try:

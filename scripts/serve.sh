@@ -7,6 +7,7 @@ SERVED_MODEL_NAME="${SERVED_MODEL_NAME:-Qwen/Qwen3.8-27B-FP8}"
 PROFILE="${PROFILE:-throughput}"
 HOST="${HOST:-0.0.0.0}"
 PORT="${PORT:-8000}"
+DRAFT_MODEL_PATH="${DRAFT_MODEL_PATH:-RadixArk/Qwen3.8-27B-DSpark}"
 
 # shellcheck source=/dev/null
 source "${REPO_ROOT}/config/selected_profiles.env"
@@ -24,6 +25,12 @@ case "${PROFILE}" in
     ;;
 esac
 
+for index in "${!PROFILE_ARGS[@]}"; do
+  if [[ "${PROFILE_ARGS[index]}" == "__DRAFT_MODEL_PATH__" ]]; then
+    PROFILE_ARGS[index]="${DRAFT_MODEL_PATH}"
+  fi
+done
+
 exec python3 -m sglang.launch_server \
   --model-path "${MODEL_PATH}" \
   --served-model-name "${SERVED_MODEL_NAME}" \
@@ -40,4 +47,3 @@ exec python3 -m sglang.launch_server \
   --port "${PORT}" \
   "${PROFILE_ARGS[@]}" \
   "$@"
-

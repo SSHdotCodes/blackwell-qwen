@@ -2,8 +2,9 @@
 set -euo pipefail
 
 RUN_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-RESULT_ROOT=/results/latest
+RESULT_ROOT="/results/${RESULT_RUN:-latest}"
 LOCAL_MODEL=/tmp/Qwen3.8-27B-FP8
+LOCAL_DRAFT=/tmp/Qwen3.8-27B-DSpark
 
 cd "${RUN_ROOT}"
 
@@ -15,7 +16,17 @@ export PYTHONPATH="${RUN_ROOT}${PYTHONPATH:+:${PYTHONPATH}}"
 mkdir -p "${LOCAL_MODEL}"
 cp -a /model/. "${LOCAL_MODEL}/"
 
-python3 -m tuner.autotune \
-  --model-path "${LOCAL_MODEL}" \
-  --output "${RESULT_ROOT}" \
+TUNER_ARGS=(
+  --model-path "${LOCAL_MODEL}"
+  --output "${RESULT_ROOT}"
   --budget-seconds "${JOB_BUDGET_SECONDS:-10620}"
+  --candidate-set "${CANDIDATE_SET:-all}"
+)
+
+if [[ -d /draft ]]; then
+  mkdir -p "${LOCAL_DRAFT}"
+  cp -a /draft/. "${LOCAL_DRAFT}/"
+  TUNER_ARGS+=(--draft-model-path "${LOCAL_DRAFT}")
+fi
+
+python3 -m tuner.autotune "${TUNER_ARGS[@]}"

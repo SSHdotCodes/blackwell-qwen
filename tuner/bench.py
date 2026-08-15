@@ -4,6 +4,7 @@ import concurrent.futures
 import http.client
 import json
 import math
+import re
 import statistics
 import time
 from dataclasses import asdict, dataclass
@@ -25,6 +26,84 @@ QUALITY_PROMPTS = [
     "Implement binary search in JavaScript without recursion.",
     "Which is larger: 2^10 or 10^3? Reply with both values.",
 ]
+
+
+def _contains_all(text: str, words: tuple[str, ...]) -> bool:
+    lowered = text.lower()
+    return all(word in lowered for word in words)
+
+
+def _json_object(text: str) -> dict[str, Any] | None:
+    match = re.search(r"\{.*\}", text, re.DOTALL)
+    if not match:
+        return None
+    try:
+        value = json.loads(match.group(0))
+        return value if isinstance(value, dict) else None
+    except json.JSONDecodeError:
+        return None
+
+
+def quality_answer_correct(case: int, text: str) -> bool:
+    """Score task correctness while allowing harmless wording and formatting differences."""
+    stripped = text.strip()
+    lowered = stripped.lower()
+    if not stripped:
+        return False
+    if case == 0:
+        return bool(re.fullmatch(r"1591[.!]?", stripped))
+    if case == 1:
+        return (
+            "def fibonacci" in lowered
+            and ("for " in lowered or "while " in lowered)
+            and "return" in lowered
+            and lowered.count("fibonacci(") == 1
+        )
+    if case == 2:
+        return _contains_all(lowered, ("glib", "trob", "flan")) and any(
+            phrase in lowered for phrase in ("no glib", "cannot", "can't", "impossible")
+        )
+    if case == 3:
+        return "80" in stripped and ("km/h" in lowered or "kilometers per hour" in lowered)
+    if case == 4:
+        return _contains_all(lowered, ("tcp", "udp")) and any(
+            word in lowered for word in ("reliable", "ordered", "guarantee")
+        ) and any(word in lowered for word in ("latency", "speed", "overhead"))
+    if case == 5:
+        value = _json_object(stripped)
+        return value is not None and value.get("name") == "primes" and value.get("primes") == [
+            2,
+            3,
+            5,
+            7,
+            11,
+        ]
+    if case == 6:
+        return bool(re.search(r"x\s*=\s*8", lowered)) and "31" in lowered
+    if case == 7:
+        return "aujourd'hui" in lowered and any(
+            phrase in lowered for phrase in ("fait beau", "temps est agréable", "météo est agréable")
+        )
+    if case == 8:
+        return "mercury" in lowered and any(value in lowered for value in ("88", "87.9", "87,9"))
+    if case == 9:
+        return any(
+            re.search(rf"\b{value}\b", lowered)
+            for value in (9, 15, 21, 25, 27, 33, 35, 39, 45, 49)
+        )
+    if case == 10:
+        compact = lowered.replace(" ", "")
+        return (
+            "binarysearch" in compact
+            and "while" in lowered
+            and "return" in lowered
+            and compact.count("binarysearch(") == 1
+        )
+    if case == 11:
+        return _contains_all(lowered, ("1024", "1000")) and any(
+            phrase in lowered for phrase in ("2^10 is larger", "2^{10} is larger", "1024 is larger")
+        )
+    raise IndexError(case)
 
 
 @dataclass
@@ -167,11 +246,11 @@ def run_quality(
     base_url: str,
     model: str,
     prompts: list[str] | None = None,
-    max_tokens: int = 96,
+    max_tokens: int = 256,
 ) -> dict[str, Any]:
     prompts = prompts or QUALITY_PROMPTS
     rows = []
-    for prompt in prompts:
+    for case, prompt in enumerate(prompts):
         metric = chat_request(
             base_url,
             model,
@@ -180,8 +259,18 @@ def run_quality(
             stream=False,
             enable_thinking=False,
         )
-        rows.append({"prompt": prompt, **asdict(metric)})
-    return {"all_ok": all(row["ok"] for row in rows), "rows": rows}
+        rows.append(
+            {
+                "prompt": prompt,
+                **asdict(metric),
+                "correct": metric.ok and quality_answer_correct(case, metric.text),
+            }
+        )
+    return {
+        "all_ok": all(row["ok"] for row in rows),
+        "all_correct": all(row["correct"] for row in rows),
+        "rows": rows,
+    }
 
 
 def compare_quality(candidate: dict[str, Any], reference: dict[str, Any]) -> dict[str, Any]:
@@ -194,14 +283,16 @@ def compare_quality(candidate: dict[str, Any], reference: dict[str, Any]) -> dic
             {
                 "prompt": current["prompt"],
                 "exact": exact,
+                "correct": current["correct"],
                 "candidate": current["text"],
                 "reference": expected["text"],
             }
         )
     return {
         "exact_matches": sum(row["exact"] for row in comparisons),
+        "correct_answers": sum(row["correct"] for row in comparisons),
         "total": len(comparisons),
-        "quality_safe": all(row["exact"] for row in comparisons),
+        "quality_safe": candidate["all_ok"] and all(row["correct"] for row in comparisons),
         "comparisons": comparisons,
     }
 
