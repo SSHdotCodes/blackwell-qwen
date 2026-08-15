@@ -20,10 +20,9 @@ hf jobs run \
   --flavor rtx-pro-6000 \
   --timeout 3h \
   --label project=blackwell-qwen \
-  --label model=qwen3.8-27b-fp8 \
+  --label model=qwen38-27b-fp8 \
   --env JOB_BUDGET_SECONDS=10620 \
   --volume hf://Qwen/Qwen3.8-27B-FP8:/model:ro \
   --volume "hf://buckets/${NAMESPACE}/${BUCKET}:/results" \
   "${IMAGE}" \
   bash -lc 'git clone --depth 1 https://github.com/SSHDotCodes/blackwell-qwen.git /tmp/blackwell-qwen && exec bash /tmp/blackwell-qwen/scripts/hf_job.sh'
-
